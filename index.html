@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<style>*,*::before,*::after{box-sizing:border-box}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Jai's Interview Prep</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* 1. Light palette — the complete token set. */
+  :root {
+    --bg: #FAF9F6; --bg2: #F0EDE8; --fg: #1A1A1A; --fg2: #6B6560;
+    --accent: #B45309; --accent-hover: #92400E; --accent-light: #FEF3C7;
+    --card: #FFFFFF; --border: #E5E0D8; --shadow: rgba(0,0,0,0.06);
+    --mark-bg: #FDE68A; --mark-fg: #78350F;
+    --quiz-bg: #1C1917; --quiz-fg: #F5F5F4;
+    --toast-bg: #292524; --toast-fg: #FAFAF9;
+    --focus-ring: rgba(180,83,9,0.12);
+    --speak-bg: rgba(180,83,9,0.13); --speak-line: #B45309;
+    --banner-border: rgba(180,83,9,0.2);
+    --glow: radial-gradient(ellipse at 85% 10%, rgba(180,83,9,0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 90%, rgba(13,148,136,0.04) 0%, transparent 50%);
+  }
+
+  /* 2. Dark, for viewers on "system" — an explicit light choice still wins. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0F0F0F; --bg2: #1A1A1A; --fg: #E8E4DF; --fg2: #9B9590;
+      --accent: #F59E0B; --accent-hover: #D97706; --accent-light: #422006;
+      --card: #171717; --border: #2A2A2A; --shadow: rgba(0,0,0,0.3);
+      --mark-bg: #78350F; --mark-fg: #FDE68A;
+      --quiz-bg: #0A0A0A; --quiz-fg: #E8E4DF;
+      --toast-bg: #F5F5F4; --toast-fg: #1C1917;
+      --focus-ring: rgba(245,158,11,0.15);
+    --speak-bg: rgba(245,158,11,0.18); --speak-line: #F59E0B;
+      --banner-border: rgba(245,158,11,0.2);
+      --glow: radial-gradient(ellipse at 85% 10%, rgba(245,158,11,0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at 15% 90%, rgba(13,148,136,0.03) 0%, transparent 50%);
+    }
+  }
+
+  /* 3. Dark, when the viewer has explicitly chosen it. */
+  :root[data-theme="dark"] {
+    --bg: #0F0F0F; --bg2: #1A1A1A; --fg: #E8E4DF; --fg2: #9B9590;
+    --accent: #F59E0B; --accent-hover: #D97706; --accent-light: #422006;
+    --card: #171717; --border: #2A2A2A; --shadow: rgba(0,0,0,0.3);
+    --mark-bg: #78350F; --mark-fg: #FDE68A;
+    --quiz-bg: #0A0A0A; --quiz-fg: #E8E4DF;
+    --toast-bg: #F5F5F4; --toast-fg: #1C1917;
+    --focus-ring: rgba(245,158,11,0.15);
+    --speak-bg: rgba(245,158,11,0.18); --speak-line: #F59E0B;
+    --banner-border: rgba(245,158,11,0.2);
+    --glow: radial-gradient(ellipse at 85% 10%, rgba(245,158,11,0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 90%, rgba(13,148,136,0.03) 0%, transparent 50%);
+  }
+
+  /* 4. The page's own toggle. Separate attribute so it never fights the host's,
+        and last in source order so it wins at equal specificity. */
+  :root[data-user-theme="light"] {
+    --bg: #FAF9F6; --bg2: #F0EDE8; --fg: #1A1A1A; --fg2: #6B6560;
+    --accent: #B45309; --accent-hover: #92400E; --accent-light: #FEF3C7;
+    --card: #FFFFFF; --border: #E5E0D8; --shadow: rgba(0,0,0,0.06);
+    --mark-bg: #FDE68A; --mark-fg: #78350F;
+    --quiz-bg: #1C1917; --quiz-fg: #F5F5F4;
+    --toast-bg: #292524; --toast-fg: #FAFAF9;
+    --focus-ring: rgba(180,83,9,0.12);
+    --speak-bg: rgba(180,83,9,0.13); --speak-line: #B45309;
+    --banner-border: rgba(180,83,9,0.2);
+    --glow: radial-gradient(ellipse at 85% 10%, rgba(180,83,9,0.06) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 90%, rgba(13,148,136,0.04) 0%, transparent 50%);
+  }
+  :root[data-user-theme="dark"] {
+    --bg: #0F0F0F; --bg2: #1A1A1A; --fg: #E8E4DF; --fg2: #9B9590;
+    --accent: #F59E0B; --accent-hover: #D97706; --accent-light: #422006;
+    --card: #171717; --border: #2A2A2A; --shadow: rgba(0,0,0,0.3);
+    --mark-bg: #78350F; --mark-fg: #FDE68A;
+    --quiz-bg: #0A0A0A; --quiz-fg: #E8E4DF;
+    --toast-bg: #F5F5F4; --toast-fg: #1C1917;
+    --focus-ring: rgba(245,158,11,0.15);
+    --speak-bg: rgba(245,158,11,0.18); --speak-line: #F59E0B;
+    --banner-border: rgba(245,158,11,0.2);
+    --glow: radial-gradient(ellipse at 85% 10%, rgba(245,158,11,0.05) 0%, transparent 50%),
+            radial-gradient(ellipse at 15% 90%, rgba(13,148,136,0.03) 0%, transparent 50%);
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg); color: var(--fg);
+    min-height: 100vh; transition: background 0.35s, color 0.35s; line-height: 1.6;
+  }
+  body::before {
+    content: ''; position: fixed; inset: 0; z-index: -1; pointer-events: none; background: var(--glow);
+  }
+
+  .ic { flex-shrink: 0; display: block; }
+
+  header {
+    position: sticky; top: 0; z-index: 100; background: var(--bg);
+    border-bottom: 1px solid var(--border); backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px); transition: background 0.35s, border-color 0.35s;
+  }
+  .header-inner {
+    max-width: 860px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .logo {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 700; font-size: 1.35rem; color: var(--fg); white-space: nowrap; letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--accent); }
+  .header-actions { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+    border: 1px solid var(--border); border-radius: 8px; background: var(--card);
+    color: var(--fg2); font-size: 0.82rem; font-family: inherit; font-weight: 500;
+    cursor: pointer; transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.1s; white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn:active { transform: scale(0.97); }
+  .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
+  .btn.icon-only { padding: 7px 9px; }
+
+  .toolbar { max-width: 860px; margin: 0 auto; padding: 16px 24px 0; }
+  .search-wrap { position: relative; margin-bottom: 14px; }
+  .search-wrap > .ic { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--fg2); pointer-events: none; }
+  .search-wrap input {
+    width: 100%; padding: 11px 44px 11px 40px; border: 1px solid var(--border);
+    border-radius: 10px; background: var(--card); color: var(--fg);
+    font-family: inherit; font-size: 0.92rem; outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.35s;
+  }
+  .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
+  .search-wrap input::placeholder { color: var(--fg2); opacity: 0.7; }
+  .search-wrap .shortcut {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    padding: 2px 7px; border: 1px solid var(--border); border-radius: 4px;
+    font-size: 0.7rem; color: var(--fg2); pointer-events: none;
+  }
+  .filters-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
+  .chip {
+    padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border);
+    background: transparent; color: var(--fg2); font-family: inherit;
+    font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+  }
+  .chip:hover { border-color: var(--fg2); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .chip.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+  .count-label { margin-left: auto; font-size: 0.78rem; color: var(--fg2); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .banner { max-width: 860px; margin: 12px auto 0; padding: 0 24px; }
+  .banner-inner {
+    padding: 10px 16px; border-radius: 8px; font-size: 0.8rem;
+    background: var(--accent-light); color: var(--accent);
+    border: 1px solid var(--banner-border); display: flex; align-items: center; gap: 8px;
+  }
+  .banner-inner a { color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: 600; }
+
+  .question-list { max-width: 860px; margin: 0 auto; padding: 16px 24px 80px; display: flex; flex-direction: column; gap: 10px; }
+  .q-card { border: 1px solid var(--border); border-radius: 10px; background: var(--card); transition: border-color 0.25s, box-shadow 0.25s; overflow: hidden; }
+  .q-card:hover { box-shadow: 0 2px 12px var(--shadow); }
+  .q-card.expanded { border-color: var(--accent); box-shadow: 0 2px 16px var(--shadow); }
+  .q-card.editing { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
+  .q-header { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; cursor: pointer; user-select: none; }
+  .q-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  .q-num {
+    font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 0.85rem;
+    color: var(--fg2); min-width: 28px; padding-top: 2px; opacity: 0.6; font-variant-numeric: tabular-nums;
+  }
+  .q-body { flex: 1; min-width: 0; }
+  .q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; flex-wrap: wrap; }
+  .q-topic, .quiz-topic-tag {
+    font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 2px 9px; border-radius: 4px; color: #fff; line-height: 1.5; background: #57534E;
+  }
+
+  /* Topic colors apply to the card pill and the quiz pill alike. */
+  .q-topic.behavioral,       .quiz-topic-tag.behavioral       { background: #0D9488; }
+  .q-topic.phd-application,  .quiz-topic-tag.phd-application  { background: #B45309; }
+  .q-topic.circularity,      .quiz-topic-tag.circularity      { background: #047857; }
+  .q-topic.indicators,       .quiz-topic-tag.indicators       { background: #C2410C; }
+  .q-topic.thesis,           .quiz-topic-tag.thesis           { background: #BE123C; }
+  .q-topic.research-design,  .quiz-topic-tag.research-design  { background: #7C2D12; }
+  .q-topic.methodology,      .quiz-topic-tag.methodology      { background: #581C87; }
+  .q-topic.personal,         .quiz-topic-tag.personal         { background: #1E40AF; }
+  .q-topic.practical,        .quiz-topic-tag.practical        { background: #065F46; }
+
+  .q-edited { font-size: 0.65rem; color: var(--fg2); font-style: italic; opacity: 0.7; }
+  .q-title { font-weight: 600; font-size: 0.95rem; line-height: 1.45; color: var(--fg); text-wrap: balance; }
+  .q-title mark { background: var(--mark-bg); color: var(--mark-fg); border-radius: 2px; padding: 0 2px; }
+  .q-chevron { color: var(--fg2); padding-top: 4px; transition: transform 0.3s; flex-shrink: 0; }
+  .q-card.expanded .q-chevron { transform: rotate(180deg); }
+
+  .answer-grid { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
+  .q-card.expanded .answer-grid { grid-template-rows: 1fr; }
+  .answer-inner { overflow: hidden; }
+  .answer-content { padding: 0 18px 16px 58px; font-size: 0.88rem; line-height: 1.7; color: var(--fg2); max-width: 68ch; }
+  .answer-content p { margin-bottom: 0.75em; }
+  .answer-content p:last-child { margin-bottom: 0; }
+  .answer-content mark { background: var(--mark-bg); color: var(--mark-fg); border-radius: 2px; padding: 0 2px; }
+  .answer-actions { display: flex; gap: 8px; padding: 10px 18px 14px 58px; }
+  .answer-actions .btn { font-size: 0.78rem; padding: 5px 12px; }
+
+  .edit-wrap { padding: 0 18px 18px 58px; }
+  .edit-textarea {
+    width: 100%; min-height: 200px; padding: 12px 14px;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg); font-family: inherit;
+    font-size: 0.88rem; line-height: 1.7; resize: vertical; outline: none; transition: border-color 0.2s;
+  }
+  .edit-textarea:focus { border-color: var(--accent); }
+  .edit-actions { display: flex; gap: 8px; margin-top: 10px; }
+  .edit-actions .btn { font-size: 0.78rem; padding: 6px 14px; }
+
+  .quiz-overlay {
+    position: fixed; inset: 0; z-index: 200; background: var(--quiz-bg); color: var(--quiz-fg);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px;
+    opacity: 0; pointer-events: none; transition: opacity 0.35s;
+  }
+  .quiz-overlay.active { opacity: 1; pointer-events: all; }
+  .quiz-top { position: absolute; top: 0; left: 0; right: 0; padding: 20px 28px; display: flex; align-items: center; justify-content: space-between; }
+  .quiz-counter { font-size: 0.85rem; opacity: 0.5; font-variant-numeric: tabular-nums; }
+  .quiz-close {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: none; border: 1px solid rgba(255,255,255,0.15); border-radius: 8px;
+    color: var(--quiz-fg); padding: 7px 14px; font-family: inherit; font-size: 0.82rem; cursor: pointer; transition: border-color 0.2s;
+  }
+  .quiz-close:hover { border-color: rgba(255,255,255,0.4); }
+  .quiz-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .quiz-body { max-width: 680px; width: 100%; text-align: center; }
+  .quiz-topic-tag { display: inline-block; letter-spacing: 0.08em; padding: 3px 12px; margin-bottom: 24px; }
+  .quiz-question {
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-size: 1.6rem; font-weight: 600; line-height: 1.4; margin-bottom: 40px; letter-spacing: -0.01em; text-wrap: balance;
+  }
+  .quiz-answer-wrap { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.45s ease; }
+  .quiz-answer-wrap.revealed { grid-template-rows: 1fr; }
+  .quiz-answer-inner { overflow: hidden; }
+  .quiz-answer-text {
+    text-align: left; font-size: 0.92rem; line-height: 1.75; opacity: 0.85; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.1); max-height: 45vh; overflow-y: auto;
+  }
+  .quiz-answer-text p { margin-bottom: 0.7em; }
+  .quiz-answer-text p:last-child { margin-bottom: 0; }
+  .quiz-actions { margin-top: 36px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .quiz-actions .btn { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); color: var(--quiz-fg); font-size: 0.88rem; padding: 10px 24px; }
+  .quiz-actions .btn:hover { background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.3); color: var(--quiz-fg); }
+  .quiz-actions .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .quiz-actions .btn.primary:hover { background: var(--accent-hover); color: #fff; }
+  .quiz-done { font-size: 1.1rem; opacity: 0.7; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+
+  .modal-overlay {
+    position: fixed; inset: 0; z-index: 300; background: rgba(0,0,0,0.5);
+    display: flex; align-items: center; justify-content: center; padding: 24px;
+    opacity: 0; pointer-events: none; transition: opacity 0.25s;
+  }
+  .modal-overlay.active { opacity: 1; pointer-events: all; }
+  .modal-box {
+    background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+    padding: 28px; width: 100%; max-width: 560px; max-height: 85vh; overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+  }
+  .modal-box h2 { font-family: 'Fraunces', Georgia, serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 6px; }
+  .modal-note { font-size: 0.8rem; color: var(--fg2); margin-bottom: 20px; line-height: 1.55; }
+  .modal-field { margin-bottom: 16px; }
+  .modal-field label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--fg2); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .modal-field input, .modal-field select, .modal-field textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px;
+    background: var(--bg); color: var(--fg); font-family: inherit; font-size: 0.88rem; outline: none; transition: border-color 0.2s;
+  }
+  .modal-field input:focus, .modal-field select:focus, .modal-field textarea:focus { border-color: var(--accent); }
+  .modal-field textarea { min-height: 140px; resize: vertical; line-height: 1.6; }
+  .modal-field textarea.mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.76rem; line-height: 1.5; }
+  .modal-actions { display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap; }
+  .modal-actions .spacer { margin-right: auto; }
+
+  .toast-container { position: fixed; bottom: 24px; right: 24px; z-index: 400; display: flex; flex-direction: column; gap: 8px; }
+  .toast {
+    padding: 12px 20px; border-radius: 10px; background: var(--toast-bg); color: var(--toast-fg);
+    font-size: 0.84rem; font-weight: 500; box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    transform: translateX(120%); transition: transform 0.35s cubic-bezier(0.22,1,0.36,1); max-width: 340px;
+  }
+  .toast.show { transform: translateX(0); }
+
+  .empty-state { text-align: center; padding: 60px 24px; color: var(--fg2); }
+  .empty-state .ic { margin: 0 auto 16px; opacity: 0.3; }
+  .empty-state p { font-size: 0.92rem; }
+
+  .s { border-radius: 3px; transition: background 0.2s; }
+  .s.speaking { background: var(--speak-bg); box-shadow: inset 2px 0 0 var(--speak-line); }
+  .quiz-answer-text .s.speaking { background: rgba(255,255,255,0.14); box-shadow: inset 2px 0 0 var(--accent); }
+
+  .player {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 250;
+    background: var(--card); border-top: 1px solid var(--border);
+    box-shadow: 0 -4px 24px var(--shadow);
+  }
+  .player[hidden] { display: none !important; }
+  .player-inner {
+    max-width: 860px; margin: 0 auto; padding: 10px 24px;
+    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  }
+  .player-now { flex: 1 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 8px; }
+  .player-num {
+    font-family: 'Fraunces', Georgia, serif; font-size: 0.8rem; color: var(--accent);
+    font-weight: 600; font-variant-numeric: tabular-nums; flex-shrink: 0;
+  }
+  .player-title {
+    font-size: 0.82rem; color: var(--fg2); white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  .player-controls { display: flex; align-items: center; gap: 6px; }
+  .player-settings { display: flex; align-items: center; gap: 10px; }
+  .pbtn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--bg); color: var(--fg2);
+    font-family: inherit; transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .pbtn:hover { border-color: var(--accent); color: var(--accent); }
+  .pbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .pbtn.primary { background: var(--accent); border-color: var(--accent); color: #fff; width: 40px; height: 40px; }
+  .pbtn.primary:hover { background: var(--accent-hover); color: #fff; }
+  .player-rate { display: flex; align-items: center; gap: 7px; font-size: 0.75rem; color: var(--fg2); }
+  .player-rate span { font-variant-numeric: tabular-nums; min-width: 32px; }
+  .player-rate input { width: 78px; accent-color: var(--accent); cursor: pointer; }
+  .player select {
+    max-width: 170px; padding: 6px 8px; border-radius: 7px; cursor: pointer;
+    border: 1px solid var(--border); background: var(--bg); color: var(--fg);
+    font-family: inherit; font-size: 0.76rem; outline: none;
+  }
+  .player select:focus { border-color: var(--accent); }
+  body.has-player .question-list { padding-bottom: 130px; }
+  body.has-player .toast-container { bottom: 90px; }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--fg2); }
+
+  @media (max-width: 640px) {
+    .header-inner { padding: 12px 16px; }
+    .logo { font-size: 1.15rem; }
+    .btn { padding: 6px 9px; font-size: 0.76rem; }
+    .btn .btn-label { display: none; }
+    .toolbar { padding: 12px 16px 0; }
+    .question-list { padding: 12px 16px 80px; }
+    .q-header { padding: 14px; gap: 10px; }
+    .q-num { min-width: 24px; font-size: 0.8rem; }
+    .q-title { font-size: 0.88rem; }
+    .answer-content { padding: 0 14px 14px 44px; }
+    .answer-actions { padding: 8px 14px 12px 44px; }
+    .edit-wrap { padding: 0 14px 14px 44px; }
+    .quiz-question { font-size: 1.25rem; }
+    .banner { padding: 0 16px; }
+    .search-wrap .shortcut { display: none; }
+    .player-inner { padding: 8px 14px; gap: 10px; }
+    .player-now { flex: 1 1 100%; order: -1; }
+    .player select { max-width: 116px; }
+    .player-rate input { width: 58px; }
+    body.has-player .question-list { padding-bottom: 165px; }
+    body.has-player .toast-container { bottom: 132px; }
+    .toast-container { left: 16px; right: 16px; bottom: 16px; }
+    .toast { max-width: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+
+<div class="toast-container" id="toasts"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="logo">Interview<span>Prep</span></div>
+    <div class="header-actions">
+      <button class="btn" id="btn-add" aria-label="Add question"></button>
+      <button class="btn" id="btn-expand-all" aria-label="Expand all answers"></button>
+      <button class="btn" id="btn-backup" aria-label="Backup and restore"></button>
+      <button class="btn icon-only" id="btn-dark" aria-label="Switch theme"></button>
+      <button class="btn" id="btn-listen" aria-label="Listen through the deck"></button>
+      <button class="btn primary" id="btn-quiz" aria-label="Start quiz"></button>
+    </div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input type="text" id="search-input" placeholder="Search questions and answers..." aria-label="Search questions">
+    <span class="shortcut">/</span>
+  </div>
+  <div class="filters-row">
+    <button class="chip active" data-topic="all">All</button>
+    <button class="chip" data-topic="behavioral">Behavioral</button>
+    <button class="chip" data-topic="phd-application">PhD Application</button>
+    <button class="chip" data-topic="circularity">Circularity</button>
+    <button class="chip" data-topic="indicators">Indicators</button>
+    <button class="chip" data-topic="thesis">Thesis</button>
+    <button class="chip" data-topic="research-design">Research Design</button>
+    <button class="chip" data-topic="methodology">Methodology</button>
+    <button class="chip" data-topic="personal">Personal</button>
+    <button class="chip" data-topic="practical">Practical</button>
+    <span class="count-label" id="count-label"></span>
+  </div>
+</div>
+
+<div class="banner" id="banner"></div>
+
+<main class="question-list" id="question-list"></main>
+
+<div class="quiz-overlay" id="quiz-overlay" role="dialog" aria-modal="true" aria-label="Quiz mode">
+  <div class="quiz-top">
+    <span class="quiz-counter" id="quiz-counter"></span>
+    <button class="quiz-close" id="quiz-close"></button>
+  </div>
+  <div class="quiz-body" id="quiz-body"></div>
+</div>
+
+<div class="modal-overlay" id="add-modal">
+  <div class="modal-box">
+    <h2>Add question</h2>
+    <p class="modal-note">Saved in this browser. Use Backup to keep a copy elsewhere.</p>
+    <div class="modal-field">
+      <label for="add-topic">Topic</label>
+      <select id="add-topic">
+        <option value="behavioral">Behavioral</option>
+        <option value="phd-application">PhD Application</option>
+        <option value="circularity">Circularity</option>
+        <option value="indicators">Indicators</option>
+        <option value="thesis">Thesis</option>
+        <option value="research-design">Research Design</option>
+        <option value="methodology">Methodology</option>
+        <option value="personal">Personal</option>
+        <option value="practical">Practical</option>
+      </select>
+    </div>
+    <div class="modal-field">
+      <label for="add-title">Question</label>
+      <input type="text" id="add-title" placeholder="e.g. Tell me about yourself">
+    </div>
+    <div class="modal-field">
+      <label for="add-answer">Answer</label>
+      <textarea id="add-answer" placeholder="Write your answer. Leave a blank line between paragraphs."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn" id="add-cancel">Cancel</button>
+      <button class="btn primary" id="add-save">Save question</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="backup-modal">
+  <div class="modal-box">
+    <h2>Backup and restore</h2>
+    <p class="modal-note">Your questions live in this browser only. Copy the JSON below to keep a copy, or paste a backup in and import it. Importing merges by question number: matching numbers are overwritten, new ones are added.</p>
+    <div class="modal-field">
+      <label for="backup-area">Questions as JSON</label>
+      <textarea id="backup-area" class="mono" spellcheck="false"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn spacer" id="backup-file">Load a file...</button>
+      <button class="btn" id="backup-close">Close</button>
+      <button class="btn" id="backup-import">Import from box</button>
+      <button class="btn primary" id="backup-copy">Copy JSON</button>
+    </div>
+  </div>
+</div>
+
+<div class="player" id="player" hidden>
+  <div class="player-inner">
+    <div class="player-now">
+      <span class="player-num" id="player-num"></span>
+      <span class="player-title" id="player-title"></span>
+    </div>
+    <div class="player-controls">
+      <button class="pbtn" id="p-prev" aria-label="Previous"></button>
+      <button class="pbtn primary" id="p-play" aria-label="Pause"></button>
+      <button class="pbtn" id="p-next" aria-label="Next"></button>
+    </div>
+    <div class="player-settings">
+      <label class="player-rate"><span id="rate-label">1.0x</span>
+        <input type="range" id="p-rate" min="0.75" max="1.5" step="0.05" value="1" aria-label="Speed">
+      </label>
+      <select id="p-voice" aria-label="Voice"></select>
+      <button class="pbtn" id="p-close" aria-label="Stop"></button>
+    </div>
+  </div>
+</div>
+
+<input type="file" id="file-input" accept=".json,.txt" style="position:fixed;left:-9999px;top:-9999px;">
+
+<script>
+/* ---------- Icons (inline: external icon fonts are blocked here) ---------- */
+const ICONS = {
+  plus:        '<path d="M12 5v14M5 12h14"/>',
+  chevronsDown:'<path d="m7 6 5 5 5-5M7 13l5 5 5-5"/>',
+  chevronsUp:  '<path d="m7 18 5-5 5 5M7 11l5-5 5 5"/>',
+  archive:     '<path d="M3 8h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/><path d="M2 4h20v4H2z"/><path d="M10 12h4"/>',
+  moon:        '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z"/>',
+  sun:         '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>',
+  shuffle:     '<path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/>',
+  search:      '<circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/>',
+  info:        '<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>',
+  chevronDown: '<path d="m6 9 6 6 6-6"/>',
+  pen:         '<path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  check:       '<path d="m20 6-11 11-5-5"/>',
+  x:           '<path d="M18 6 6 18M6 6l12 12"/>',
+  eye:         '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/>',
+  skip:        '<path d="M5 4v16l9-8zM19 4v16"/>',
+  arrowRight:  '<path d="M5 12h14M13 6l6 6-6 6"/>',
+  checkCircle: '<circle cx="12" cy="12" r="9"/><path d="m8.5 12.4 2.4 2.4 4.6-5"/>',
+  play:        '<path d="M6 4v16l13-8z"/>',
+  pause:       '<path d="M8 4v16M16 4v16"/>',
+  prev:        '<path d="M19 5v14l-11-7zM5 4v16"/>',
+  next:        '<path d="M5 5v14l11-7zM19 4v16"/>',
+  headphones:  '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14a2 2 0 0 1 2-2h1v7H6a2 2 0 0 1-2-2zM20 14a2 2 0 0 0-2-2h-1v7h1a2 2 0 0 0 2-2z"/>'
+};
+function icon(name, size) {
+  size = size || 16;
+  return '<svg class="ic" viewBox="0 0 24 24" width="' + size + '" height="' + size + '" fill="none" ' +
+         'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ' +
+         'aria-hidden="true" focusable="false">' + (ICONS[name] || '') + '</svg>';
+}
+
+/* ---------- Data ---------- */
+const DEFAULT_QUESTIONS = [
+  {"id":1,"topic":"behavioral","title":"Tell me about yourself","answer":"Sure. I'm Jai. I recently completed my master's, including a thesis with Toyota Material Handling. It brought together my interests in engineering, circularity and working on industrial problems, and showed me that I wanted to continue in this direction.\n\nWhen progress slows, I tend to take ownership. I ask what is actually stuck, break it down and agree on the next steps with the people involved. I'm comfortable working both collaboratively and independently. I'm also persistent, but willing to change my view when the evidence changes.\n\nAway from work, I try to be a dependable partner, brother and son. I play badminton, follow football and cricket, enjoy cooking, and stay socially involved through Navitas and Linköping Science Park.\n\nThat way of working developed gradually. Mechanical engineering taught me to analyse problems systematically. Entrepreneurship taught me to move them forward by involving people, testing assumptions and taking responsibility. Research gave me a more rigorous way of doing that: making my assumptions explicit, choosing methods carefully and being precise about what the evidence can support.\n\nI used all three during my Toyota thesis. We began with a broad brief around their net-zero ambitions and initially explored remanufacturing because it already interested me. The literature and our early conversations in the company then helped us narrow the problem: useful knowledge from later lifecycle activities was not reaching new-product development. I enjoyed following that process from a broad industrial concern to a researchable question.\n\nAs I understand it, this position takes that question further by looking at how sustainability and circularity indicators can move from strategy into everyday decisions across organisational levels and functions. So, for me, it feels like a natural next step as a researcher."},
+  {"id":2,"topic":"behavioral","title":"Why do you want to begin a PhD now, after entrepreneurship?","answer":"The honest answer is that a PhD only became a concrete ambition during my thesis. Before that, research interested me, but I hadn't experienced enough of the everyday process to know whether I was attracted to the actual work or simply to the idea of being a researcher.\n\nI spent several years in entrepreneurship, and I enjoyed building something where there wasn't an established route. Looking back, the part that consistently held my attention was the period when the problem was still unclear—when we were forming an explanation, testing it against what happened and changing the approach when our assumptions didn't hold. I enjoy work when it keeps me learning and forces me to reconsider how I understand something.\n\nI found that same element in the thesis, but with a depth that was new to me. We weren't required to accept Toyota's initial brief as the final definition of the problem. We could stay with the uncertainty, study the literature, speak with people occupying different parts of the system and allow the research question itself to change. We began from remanufacturing, but the evidence gradually moved us towards organisational conditions and information flow. I found that change genuinely satisfying because our understanding became less obvious but more defensible.\n\nResearch also demands something entrepreneurship doesn't always allow. In a business, a responsible decision sometimes has to be made before the explanation is complete. In research, the explanation itself must survive scrutiny: someone else should be able to examine how you reached it, where it applies and where it doesn't. I realised that I enjoy that discipline as much as I enjoy creating movement.\n\nSo the reason for doing a PhD now is that the thesis gave me evidence about myself. I now know that I enjoy the sustained process of research, not only its final output, and I've found a problem area—circularity within product realisation—that I want to understand much more deeply."},
+  {"id":3,"topic":"phd-application","title":"Why this doctoral position rather than an industry role or a broader sustainability PhD?","answer":"What attracts me is the particular level at which COMPASS studies sustainability.\n\nI'm interested in environmental assessment and circular technologies, but I don't want to study either in isolation. My strongest interest is in the point where technical sustainability knowledge enters an organisation and has to compete with other legitimate concerns—cost, quality, production feasibility, risk and time. That is where an ambition either becomes part of engineering work or remains something reported alongside it.\n\nMy thesis brought me to one part of that problem. We examined how knowledge from end-of-use activities could influence product development and found that access to knowledge wasn't enough. It also needed channels, receivers, translation, incentives and decision weight. But the thesis stopped at diagnosing those conditions within one organisation. We didn't study how sustainability objectives are converted into indicators, how those indicators are interpreted across organisational levels, or whether they actually alter product and production decisions.\n\nCOMPASS would let me move into those unanswered questions. It also broadens the setting from one OEM and one direction of information flow to several companies, different organisational contexts and both vertical and horizontal integration.\n\nAn industry position could allow me to implement an indicator or improve one company's process. That would be useful, but the organisation's immediate need would understandably define the scope. A PhD allows the additional questions I'm drawn to: Why does the same type of indicator gain influence in one setting and become a reporting exercise in another? What can transfer between companies, and what must remain context-specific?\n\nSo it isn't simply “a PhD rather than industry.” The attraction is research conducted closely enough to industry to understand real decisions, while still having the independence and time to develop an explanation beyond one local solution."},
+  {"id":4,"topic":"phd-application","title":"What is COMPASS trying to achieve, in your own words?","answer":"If I remove the project terminology, I think COMPASS is examining what happens between a sustainability strategy and an everyday engineering decision.\n\nA company may decide that it wants to become more sustainable or circular, but that ambition is too broad to guide a designer, production engineer or purchasing specialist directly. Performance indicators are one way of translating the ambition into something that can be discussed, monitored and acted upon. But that translation creates three connected research problems.\n\nThe first is selection. Choosing an indicator also chooses which part of sustainability becomes visible, which system boundary is used and which trade-offs may remain hidden. What can be measured easily can begin to dominate what is genuinely important.\n\nThe second is implementation. Even a well-chosen indicator requires data, ownership, definitions, responsibilities, timing and a place within the product-realisation process. Otherwise, it exists formally but sits outside the decisions it was intended to support.\n\nThe third is use. Different functions may interpret the same indicator differently, or agree with it in principle but give it little weight when it conflicts with cost, quality or delivery. Its presence therefore doesn't establish its influence.\n\nThis is where I understand vertical and horizontal alignment to matter. Vertically, the meaning of a strategic goal has to survive as it moves into programme, project and operational decisions—and information about what is feasible must also move upward. Horizontally, functions need enough shared understanding to coordinate around the indicator.\n\nI don't interpret shared understanding as complete agreement. It means that people understand what the indicator represents, its assumptions and how it relates to their respective decisions, even when they disagree about the trade-off.\n\nSo, in my understanding, COMPASS isn't primarily developing a universal list of KPIs. It is studying the organisational and technical conditions through which indicators can make sustainability strategy meaningfully usable in product realisation."},
+  {"id":5,"topic":"phd-application","title":"Why Jönköping University, JTH and GRACE?","answer":"What attracts me is not Jönköping University in a general sense. It is the combination of research perspectives around this particular problem.\n\nMy thesis mainly examined an interface between later-lifecycle activities and product development. At JTH, product realisation is treated more broadly: product development and production development are connected, and both technical and organisational questions are part of the research. That would stretch my current understanding in an important direction. A circular product concept only becomes real if the production, supply, service and recovery systems can support it.\n\nThe supervisory combination is also relevant to the areas in which I need to develop. Paraskeva's research connects integrated product and production development with sustainability, knowledge integration, circular strategies and shared understanding across disciplinary boundaries. That is close to the substantive problem I want to investigate.\n\nKristina Säfsten's work brings a strong production-development perspective, particularly around interfaces between product and production development. Her work on practice-oriented research methodology is also important for me. I have completed one substantial embedded case study, but a multi-company doctoral project requires greater methodological depth: defining appropriate cases and units of analysis, maintaining a clear chain between question, data, analysis and contribution, and balancing practical relevance with scientific independence.\n\nGRACE makes the position more than an isolated doctoral project. COMPASS sits within a wider research environment concerned with integrated product and production realisation for the green transition and works with companies facing different products, production systems and organisational contexts. That creates the possibility of learning through comparison rather than treating one company's way of working as the general answer.\n\nSo my reason is quite specific: the environment combines the sustainability question I'm already moving towards with the product-production integration and research-methodological development that I still need."},
+  {"id":6,"topic":"phd-application","title":"Which part of COMPASS interests you most?","answer":"The part that interests me most is what happens after an indicator has been selected.\n\nSelection matters because an indicator defines what the organisation will see. But the more difficult question, to me, is how that representation becomes meaningful enough—and influential enough—to affect a decision.\n\nFor example, a strategic objective such as reducing lifecycle impact may become a carbon indicator. Management may use it to track a portfolio, but a designer needs to understand which design variables affect it. Production needs to know what process changes it implies, and purchasing may depend on supplier data produced with different assumptions. The number can remain technically identical as it crosses these boundaries while its practical meaning changes considerably.\n\nThat creates several questions I find interesting. Who is responsible for translating the indicator between these settings? How much adaptation is possible before it stops representing the same objective? What happens when the indicator is valid but arrives too late, or when everyone understands it but it still carries less authority than cost or time?\n\nThis is where I see a connection to my thesis without claiming that the problems are identical. In the thesis, information could exist without crossing the organisational conditions required for transfer and use. In COMPASS, the question may be how an indicator acquires the shared meaning, legitimacy and decision weight needed to work across organisational boundaries.\n\nUltimately, I'm interested in why an indicator becomes part of reasoning in one setting but becomes mainly a reporting ritual in another."},
+  {"id":7,"topic":"behavioral","title":"What strengths would you bring, and what would you need to learn?","answer":"My most relevant strength is not that I already know how to develop circularity KPIs—I don't. It is that I have experience investigating the organisational space between information and a decision.\n\nIn the Toyota thesis, we began without a fixed research question. I helped move the work from a broad net-zero brief to a bounded problem through literature work, early stakeholder engagement and repeated reframing. The final study included 23 respondents, six stakeholder-mapping workshops and several supporting evidence sources across central functions and three embedded operational settings. That gave me experience of dealing with different organisational accounts without assuming that one function possessed the complete explanation.\n\nI also bring a combination of analytical persistence and practical ownership. Engineering taught me to decompose a system. Entrepreneurship taught me to keep progress moving when information was incomplete and to remain accountable to the people involved. The thesis taught me that ownership in research also means being willing to weaken or abandon an explanation when the evidence doesn't sustain it.\n\nMy learning needs are equally important. I need a deeper grounding in performance-measurement and indicator theory. My thesis identified conditions involving information use, incentives and financial reasoning, but it didn't develop or validate indicators. I also need to broaden from product development and later-lifecycle feedback into integrated product and production development.\n\nMethodologically, I want to learn how to design comparative and potentially longitudinal research across several companies, and how to evaluate an intervention without confusing participant acceptance with demonstrated effect. I also haven't yet published a peer-reviewed paper or taught formally at university level.\n\nThat is how I see my starting point: relevant experience with the underlying organisational problem, but significant theoretical, methodological and academic development still to undertake."},
+  {"id":8,"topic":"behavioral","title":"Where do you want the PhD to lead, and are you ready for a multi-year commitment?","answer":"I don't yet want to force the answer into a specific job title. What I do know is that I want research to remain central to my work, particularly research that is scientifically rigorous but close enough to organisations to understand how engineering decisions are actually made. That could eventually be in academia or in an industrial-research environment.\n\nI'm not viewing the PhD primarily as a qualification that will allow me to return to something unrelated. I'm interested in developing the ability to formulate stronger research questions, build defensible studies, publish work that contributes to an academic conversation and translate that knowledge responsibly into industrial settings.\n\nI also understand that enjoying intellectual stimulation isn't enough to complete a doctorate. Research includes long periods of reading, documenting, coding, rewriting and waiting for access or feedback. A paper may require several revisions, an attractive explanation may fail, and an industrial partner's priorities may change during the study. My master's thesis gave me only a limited experience of that reality, so I wouldn't claim that it was equivalent to a doctorate.\n\nWhat gives me confidence is that I don't need constant novelty to remain engaged. What sustains me is seeing my understanding become more complete through cumulative work. My entrepreneurial experience also involved remaining responsible for uncertain work over several years rather than moving on when the initial excitement ended.\n\nSo I see the commitment realistically. The PhD appeals to me not because every day will be intellectually exciting, but because the difficult and repetitive work contributes to a question I genuinely want to understand."},
+  {"id":9,"topic":"circularity","title":"What is a circular economy, and how do reuse, repair, refurbishment, remanufacturing and recycling differ?","answer":"I wouldn't define circular economy simply as recycling or keeping materials in a loop. In an industrial context, I understand it as reorganising how products and resources are designed, produced, used and recovered so that their value and utility can be retained for longer while reducing virgin-resource extraction, waste and avoidable environmental burden.\n\nThat involves several different mechanisms. We can narrow resource flows by using fewer resources to provide a function, slow loops by extending product and component life, and close loops by returning materials to production. Doing this at a system level also requires suitable business models, reverse flows, information, incentives and recovery capabilities. A product cannot be made circular through design features alone if the system needed to return and recover it doesn't exist.\n\nThe recovery strategies differ mainly in how much of the product's existing identity, function and embedded value they preserve.\n\nReuse keeps the whole product in use with little or no substantial intervention, usually for the same function.\n\nRepair corrects specific faults or replaces failed parts so that the existing product can continue performing its intended function.\n\nRefurbishment is normally broader. The product is inspected and restored to an acceptable condition, and it may be updated, but it isn't necessarily returned to an as-new specification.\n\nRemanufacturing is a controlled industrial process. A used product or core is disassembled, inspected, cleaned, restored and tested to meet a defined performance standard, often with a warranty comparable to a new product. The precise legal and technical definition can differ between sectors.\n\nRecycling recovers material after the product and component structures have been broken down. It can prevent virgin extraction, but it normally loses more of the energy, labour, knowledge and functional value already embedded in the product.\n\nThat is why strategies that retain the product or component are often described as higher-value loops than recycling. But I would not assume that the highest loop is automatically the most sustainable. The result depends on additional lifetime, product efficiency, collection and transport, recovery yield, safety, market displacement and rebound effects.\n\nThe appropriate question is therefore not just, “Is this circular?” It is: What value is actually retained, for how long, compared with which alternative, within what system boundary, and with what environmental, social and economic consequences?"},
+  {"id":10,"topic":"circularity","title":"How is circularity different from sustainability? Can a more circular option produce a worse sustainability outcome?","answer":"I see circularity as a possible means towards sustainability, not as proof that sustainability has been achieved.\n\nCircularity is mainly concerned with how resources and value move through an economic system: reducing virgin-resource use, extending product and component life, and recovering products or materials. Sustainability asks a broader outcome question. It includes environmental effects, but also social and economic consequences, their distribution between stakeholders and whether the result can be maintained over time.\n\nThe distinction matters because a circular strategy can improve one characteristic while worsening the overall outcome. For example, remanufacturing a machine preserves much of its embedded material and manufacturing value. But if extending its life also prolongs very inefficient energy consumption, the lifecycle impact could be greater than replacing it with a substantially more efficient product. The answer would depend on the energy mix, additional lifetime, remanufacturing burden and what new production is genuinely displaced.\n\nThere can also be rebound effects. If refurbishment makes a product much cheaper and expands total consumption instead of replacing new production, the absolute resource benefit may be smaller than the product-level circularity suggests. Social conditions in collection and recovery work could create another trade-off.\n\nSo I would evaluate a circular strategy against a defined alternative and functional unit, using an appropriate lifecycle boundary. I would ask what is retained, what new activity the strategy creates, what it displaces and whether burdens are shifted between lifecycle stages, countries or sustainability dimensions.\n\nThis also affects indicators. A circularity indicator may show that material is recirculated, but we may still need outcome indicators to understand whether emissions, resource use or social conditions actually improved."},
+  {"id":11,"topic":"circularity","title":"How would you integrate circularity into product development? Which stages, decisions and functions matter?","answer":"I would begin by deciding what kind of circular system the company is trying to create. “Design a circular product” is too vague unless the team knows whether it is designing for longer life, repair, upgrading, reuse, remanufacturing, material recovery or some combination. Each strategy creates different requirements for the product, production system, business model and value chain.\n\nAt the strategic stage, the company needs to define the intended value-retention pathway, the actors required and the business rationale. If the strategy is remanufacturing, for example, the company needs access to returned products, a recovery process and a market for the result. Product design alone cannot create those conditions.\n\nThat strategy then has to become product and system requirements. Depending on the case, these might concern durability, modularity, access to high-failure components, non-destructive disassembly, standardised interfaces, material identification, diagnostics or traceability. The requirements should be connected to measurable criteria, but only where the measure genuinely represents the intended circular outcome.\n\nDuring concept development, different architectures and lifecycle scenarios should be compared before the design becomes difficult to change. Detailed design then determines whether the original intention survives choices about joints, tolerances, coatings, electronics, software access and material combinations.\n\nIndustrialisation is equally important. The organisation needs processes for inspection, cleaning, disassembly, testing and quality assurance, as well as reverse logistics, data systems, skills and supplier participation. Validation should therefore assess both the product and the wider system that is expected to retain its value.\n\nThis requires product development, production development, purchasing, service, logistics, sustainability, sales or business-model roles and later-lifecycle operations to contribute at different points. The integration mechanism could include shared requirements, lifecycle scenarios, prototypes, indicators and development-gate criteria.\n\nThe important point is that circularity enters the decisions where product and system commitments are made. Assessing it only after the product has been designed can describe the result, but it has much less power to change it."},
+  {"id":12,"topic":"circularity","title":"What does integrated product and production development mean to you, and why is production essential to circularity?","answer":"I understand integrated product and production development as the coordinated development of both the product and the system required to produce it. It is more than product and production engineers exchanging information occasionally. Decisions in each domain are interdependent, so the performance of the final product-realisation system depends on their combined outcome rather than either function optimising its own part.\n\nA product designer may choose a geometry, material or joining method that gives excellent product performance but creates difficult assembly, inspection or process-control requirements. Production may optimise for current efficiency in a way that restricts future product flexibility. Integration means making those dependencies visible while the relevant choices can still change.\n\nCircularity adds another layer because production is no longer concerned only with manufacturing a new product. The system may also need to inspect returned products, manage uncertain core quality, disassemble without damage, recover components, remanufacture them and verify their performance. That requires processes, equipment, skills, layouts, information and quality criteria that may be very different from linear production.\n\nFor example, a modular product architecture may appear suitable for repair or remanufacturing. But if the production and recovery systems cannot identify component histories, separate modules efficiently or test recovered components reliably, the circular potential remains theoretical. The reverse is also true: recovery operations may generate knowledge about common failures or disassembly problems that should influence the next product architecture.\n\nSo production is essential for three reasons. It establishes whether the circular design is operationally feasible, whether it can be performed consistently at the required quality, and whether it can be scaled economically. This is also why indicators may need to connect product and production decisions instead of measuring each domain separately."},
+  {"id":13,"topic":"indicators","title":"What is the difference between a metric, a performance indicator, a KPI and a target?","answer":"I would first acknowledge that these terms are not used consistently across either the literature or companies. I would therefore clarify how the organisation uses them rather than assume that my vocabulary is universal.\n\nAs a working distinction, a metric is a defined way of quantifying something. It specifies what is calculated, in which unit and within which boundary. Kilograms of carbon-dioxide equivalent per functional unit would be a metric.\n\nA performance indicator uses a metric—or sometimes a combination of measures—to indicate performance in relation to an objective, process or expected result. It therefore has an interpretive purpose. The number becomes an indicator when it helps us judge whether the organisation, product or process is moving in the intended direction.\n\nA KPI is a performance indicator that has been selected as critical to strategic or operational success. Nothing in the mathematical form makes an indicator “key.” It becomes key because the organisation gives it priority, responsibility and a role in important decisions. If everything is labelled a KPI, the term loses that selective function.\n\nA target is the desired level of performance, normally with a boundary and time frame. An indicator tells us what performance is; the target tells us what level we are trying to reach. A benchmark is different again because it provides a reference for comparison, not necessarily the level the organisation ought to achieve.\n\nFor example, the mass of secondary material is raw measurement data. Recycled content as a percentage of total material is a metric. It may be used as an indicator of progress towards a circular-material objective. If management identifies it as critical and embeds it in product decisions, it may become a KPI. Reaching 40 percent in a defined product family by a specified year would be the target.\n\nEven then, the indicator might be incomplete. Recycled-content percentage says little by itself about durability, recyclability, material toxicity or lifecycle impact. The terminology must therefore be accompanied by an explicit purpose, definition, calculation, ownership and decision context."},
+  {"id":14,"topic":"indicators","title":"What makes a sustainability or circularity indicator useful rather than merely easy to measure?","answer":"I would describe usefulness as a relationship between the indicator, the objective, the user and the decision. An indicator isn't useful in isolation.\n\nFirst, it needs construct validity: it must represent the aspect of sustainability or circularity the organisation believes it represents. Scrap rate is easy to measure and may be relevant to production efficiency, but it is not a complete indicator of product circularity. Recycled-content percentage is another example. It may reward material substitution while saying nothing about product lifetime or whether the material can be recovered again.\n\nSecond, its boundary, calculation and data must be credible. Users should know which lifecycle stages, products and assumptions are included, how uncertainty is handled and whether comparisons are legitimate. A precise number produced from an inappropriate boundary can be more misleading than an acknowledged estimate.\n\nThird, it has to match the decision. It should arrive before the choice becomes irreversible, at a level of detail the user can influence. A portfolio-level climate indicator may help management allocate resources but give a component designer little guidance unless it can be connected to design variables.\n\nFourth, the indicator must work within a system of measures. Optimising one number can shift burdens or create dysfunctional behaviour. Reducing product mass, for example, could impair durability or repairability. The organisation needs a way to see relevant trade-offs rather than reward one local improvement.\n\nFinally, someone must own its definition and data, someone must be responsible for responding to it, and the decision process must establish what weak performance actually triggers.\n\nThe recent study by Malz, Säfsten and Wlazlak is relevant here. Across eight manufacturing companies, environmental indicators dominated, while social and economic dimensions were rarely represented and circularity was expressed mainly through “reduce.” My interpretation is that existing data and established measurement practices can narrow what becomes visible. A useful indicator system therefore has to question not only how reliably something is measured, but also what important aspects have been left outside the measurement system."},
+  {"id":15,"topic":"indicators","title":"Why can a technically valid indicator still fail to influence a decision?","answer":"Because technical validity answers only whether the indicator has been defined and calculated appropriately. Decision influence depends on a wider organisational process.\n\nThe simplest failure is timing. The indicator may be accurate but appear after the architecture, supplier or production-process decision has already been fixed. It can then report performance without shaping it.\n\nA second problem is scale. A corporate indicator may be meaningful for a product portfolio but too aggregated for an engineer to connect it to a particular choice. Conversely, a technically detailed measure may not help management understand strategic consequences.\n\nA third problem is interpretation. Different functions develop specialised knowledge around their own work. A sustainability specialist may understand the lifecycle assumptions behind a carbon value, while a designer sees a number without knowing which variables produced it. Production or purchasing may work with different boundaries and time horizons. Transferring the same number does not automatically transfer the knowledge required to use it.\n\nThe most difficult boundary appears when the functions understand the indicator but its implications affect them differently. Improving it may increase one department's cost, workload or risk while the benefit appears elsewhere or later. That is no longer simply an information problem. It involves incentives, decision rights, priorities and negotiation.\n\nThe indicator can also lack an owner, a recognised receiver or a rule for what happens when it conflicts with cost, quality and delivery. In that situation it may be discussed, but it carries little decision weight.\n\nThis is close to an important distinction in my thesis. Information could be available without crossing the transfer and use conditions required to influence product development. In COMPASS, I would want to examine the corresponding process around an indicator: who constructs it, who translates it, when it appears, what other criteria it meets and whether it changes the reasoning or only documents the final result."},
+  {"id":16,"topic":"indicators","title":"What are vertical and horizontal alignment? Give one concrete example of each.","answer":"Vertical alignment connects organisational strategy with decisions at different hierarchical and operational levels. But I don't think it should be understood as only a top-down cascade.\n\nFor example, a company may establish a strategic objective to reduce lifecycle greenhouse-gas emissions. That could become a carbon budget for a product portfolio, then requirements for a development programme and criteria used during a concept gate. For the chain to be aligned, the local measures should have a defensible relationship with the strategic outcome. Simply repeating the same corporate KPI at every level wouldn't necessarily help an engineer act.\n\nThe connection also has to work upward. Product and production teams may discover that a target depends on unavailable supplier data, an immature technology or a trade-off not recognised at the strategic level. That information should allow management to revise resources, assumptions or the implementation route. Otherwise, “alignment” becomes target deployment without organisational learning.\n\nHorizontal alignment connects functions and specialisations whose work is interdependent. Suppose a product team wants to increase recycled aluminium content. Design must consider material properties and product performance. Purchasing needs qualified suppliers and traceable data. Production has to understand process behaviour and scrap. Sustainability needs an appropriate lifecycle calculation, while service may be concerned about durability.\n\nHorizontal alignment doesn't mean these functions use the indicator in exactly the same way or give it equal priority. It means the definition, assumptions, dependencies and consequences are understood well enough for them to make a coordinated decision.\n\nSo I would look for more than matching numbers. Real alignment requires traceability between goals and local action, compatible definitions, feedback in both directions and a process for resolving trade-offs."},
+  {"id":17,"topic":"indicators","title":"What is shared understanding? Does it require everyone to agree?","answer":"I would define shared understanding as sufficient overlap in how people understand a problem, an indicator and its consequences for them to coordinate their work.\n\nIt doesn't mean identical knowledge. A production engineer and a sustainability specialist should remain specialists; the purpose isn't to make each reproduce the other's expertise. It also doesn't mean agreement. They may understand the same lifecycle calculation and still disagree about whether the environmental benefit justifies a production risk.\n\nWhat needs to be shared depends on the task. Usually, people need a common understanding of the objective, the indicator's definition and boundary, the main assumptions, their dependencies on one another and the decision that must be made. Each function should also understand enough of the others' constraints to see why a disagreement exists.\n\nThat distinction matters because apparent consensus can be misleading. People may use the same term—such as “recyclable”—while referring to technical material potential, the existence of collection infrastructure or actual recovery at scale. Conversely, a meeting may end in agreement because one function has more authority, not because a shared interpretation has been created.\n\nI would therefore avoid measuring shared understanding only by asking whether participants agree. I would look at whether they can explain the indicator consistently, identify its limitations, recognise one another's dependencies and coordinate a decision without repeatedly reopening the underlying meaning.\n\nShared understanding is also temporary and context-specific. A team may understand an indicator well enough for one decision, but a new technology, stakeholder or system boundary can create a more complex knowledge boundary. It has to be maintained through interaction rather than treated as a one-time communication outcome."},
+  {"id":18,"topic":"indicators","title":"Which organisational conditions are needed for indicators to be used in practice?","answer":"I would organise the conditions into connected layers, because solving one layer rarely makes the indicator usable by itself.\n\nAt the strategic level, the indicator needs a clear relationship with an organisational objective. Management attention, resources and incentives should support that objective rather than consistently rewarding a competing behaviour.\n\nAt the governance level, ownership has to be divided clearly. Someone may own the definition and data, but a decision-maker must also own the response. An indicator with a data owner but no accountable user can be perfectly maintained and still remain inactive.\n\nAt the informational level, definitions, boundaries, calculation rules, data lineage and uncertainty should be visible. Different functions need appropriate access and sufficient confidence in the information.\n\nAt the process level, the indicator needs a defined point of entry. The organisation should know which decision it informs, when it is reviewed, what threshold prompts action and how it is balanced against other criteria. Timing is especially important because many product and production choices become expensive to reverse.\n\nAt the capability level, users need enough sustainability, circularity and measurement knowledge to interpret the result. Translation may be required between strategic, sustainability, product and production perspectives. Sometimes a specific person or cross-functional forum performs that boundary-spanning role.\n\nFinally, the organisation needs a learning process. Indicators can become obsolete, encourage gaming or produce unintended effects. Their use and consequences should therefore be reviewed rather than assuming that implementation is finished once they appear on a dashboard.\n\nMy thesis gives me sensitising concepts here: commitment, organisational position, channels, incentives, awareness, receivers and knowledge translation. But I wouldn't assume that its eight conditions are the COMPASS answer. Indicators introduce issues such as construct validity, data governance, target setting and interactions within a performance-measurement system that the thesis didn't investigate.\n\nIf I had to identify the minimum starting condition, it would be a clear connection to a real decision and an accountable user. Without that, investment in data and measurement may create reporting capacity without creating influence."},
+  {"id":19,"topic":"indicators","title":"In what sense could an indicator act as a boundary object, and when would that idea fail?","answer":"A boundary object is not simply an artefact that several functions can see. It is an artefact that helps people from different knowledge domains represent their perspectives, recognise their dependencies and work on a shared problem.\n\nAn indicator could play that role. For example, a lifecycle carbon indicator could give sustainability, design, production and purchasing a common reference. Each function relates it to different local knowledge, but the indicator can make the consequences of their choices visible in relation to the same product-level objective.\n\nThe important point is that the indicator is not inherently a boundary object. It becomes one through use. Its effectiveness depends on the complexity of the boundary, the properties of the indicator or its representation, the people involved and how the interaction is organised.\n\nAt a relatively simple boundary, a stable definition and shared data format may be enough to transfer knowledge. If different functions interpret the underlying concepts differently, the indicator must also support translation. If improving it creates conflicting interests or requires several functions to change established practices, the object must help them transform their existing knowledge and negotiate consequences. A number alone may be too thin for that; it might need assumptions, scenarios, visualisations or a physical prototype around it.\n\nIt could fail if the calculation is a black box, the system boundary is contested, the level of aggregation hides local consequences or users cannot connect it to something they control. It may also fail when organisational hierarchy or incentives prevent genuine negotiation, even if the representation itself is well designed.\n\nThis is why the recent boundary-object work by Wlazlak and Säfsten is relevant. Their framework treats effectiveness as context-dependent and connects the complexity of the boundary with the properties of the object and the way it is prepared and used.\n\nSo I would say an indicator has boundary-object potential. Whether it actually integrates knowledge has to be demonstrated through the interaction and resulting coordination, not inferred from the existence of a common dashboard."},
+  {"id":20,"topic":"indicators","title":"How would you compare indicator use across four industrial partners without forcing one universal solution?","answer":"I would standardise the research logic, not the companies or their indicators.\n\nThe first step would be to define a precise unit of analysis. Instead of treating each whole company as one case, I might follow the use of a selected sustainability or circularity indicator within a bounded product or production decision. The four companies could then contain embedded decision cases.\n\nI would use a common protocol across them: What objective is the indicator expected to represent? Who defines and owns it? Where does its data come from? How does it enter the decision? Which functions interpret it? What happens when it conflicts with another criterion? That creates comparability even when the companies use different indicators.\n\nEach case should first be analysed within its own context. Husqvarna, FläktGroup, Lindbäcks and OBOS differ in products, production systems, lifecycles, value chains and probably measurement maturity. Those differences are not noise to remove; they may explain why the same mechanism has a different outcome.\n\nThe cross-case analysis could then look for several things. Some mechanisms may recur—for example, an indicator arriving too late or lacking an accountable receiver. Some may produce similar outcomes for different reasons. Others may depend on a particular product architecture, business model or production context.\n\nCase selection should therefore use theoretical reasoning rather than convenience alone. Similar cases can test whether a pattern repeats, while deliberately contrasting cases can reveal the conditions under which it changes. Comparable interviews, documents, observations and decision histories would strengthen the analysis, but I wouldn't assume that equal numbers of interviews automatically create equivalent evidence.\n\nIf possible, I would also follow selected cases over time. A retrospective interview may tell us that an indicator is “used,” while observing its movement through an actual decision can show how its meaning and influence change.\n\nThe contribution should then have two levels: recurring mechanisms or design principles that appear transferable, and explicit contextual conditions that determine how they need to be adapted. That would support analytical generalisation without producing a universal KPI list or ranking the four companies against an artificial common maturity scale."},
+  {"id":21,"topic":"research-design","title":"What do you see as the central research problem in COMPASS, and what provisional research question would you ask?","answer":"I would describe the central problem as a loss of meaning and decision usefulness during translation.\n\nA company begins with a broad sustainability ambition. It then has to translate that ambition into indicators. Those indicators move between organisational levels and specialist functions, and eventually they are expected to influence a product or production decision. At each stage, something can be lost or altered.\n\nThe first translation determines what sustainability means in measurable terms. If the chosen indicators mainly concern emissions, energy and material reduction, other environmental, social or circularity dimensions may become less visible.\n\nThe second translation occurs across organisational boundaries. Management, sustainability specialists, product developers, production engineers and purchasing may use the same indicator but understand its purpose, boundary and consequences differently.\n\nThe third translation is from information to action. Even when an indicator is understood, it may not influence the decision because it arrives too late, lacks an accountable user or carries less authority than cost, quality or delivery.\n\nThe current work by Malz, Säfsten and Wlazlak provides a strong description of current practice: environmental indicators dominate, circularity is represented mainly through reduction, and companies report fragmented data, limited knowledge and weak systematic integration. What I see as the next explanatory question is why those patterns persist and what allows an indicator to work differently.\n\nMy provisional main question would therefore be:\nHow are sustainability and circularity performance indicators translated and used across organisational levels and functional boundaries during product and production development, and under what conditions do they support shared understanding and influence decisions?\n\nPossible subquestions could examine:\n1. Where and why do meaning, ownership or decision relevance change as indicators move through the organisation?\n2. How do indicator properties, organisational conditions and decision context interact?\n3. How can indicator-use practices be designed and adapted to improve coordination without oversimplifying sustainability?\n\nI would treat that as evidence of my current thinking, not as a proposal I expect the project to adopt unchanged. Before finalising it, I would need to understand the division between the existing COMPASS studies, the supervisors' intended contribution, the available company settings and where a new doctoral study can add knowledge rather than duplicate work."},
+  {"id":22,"topic":"research-design","title":"Why is this an academic research problem rather than a company assignment to select better KPIs?","answer":"The difference isn't whether the work produces something useful for a company. Good applied research should. The difference is the kind of question being asked and the knowledge expected from the answer.\n\nA company assignment might ask: Which indicators should we use? Where should they appear in our development process? What should the dashboard contain? Its success would mainly be judged by whether the proposed solution works for that organisation.\n\nThe academic problem begins when we ask why an indicator becomes usable in one context but not another. That requires us to identify mechanisms, examine alternative explanations and specify the conditions under which the finding should or shouldn't transfer.\n\nFor example, suppose two companies introduce technically similar circularity indicators. In one company, the indicator changes concept selection. In the other, it is reported after the important decision has already been made. A consultancy project might improve the second company's process. Research would additionally ask what explains the difference: timing, boundary complexity, ownership, incentives, data credibility, organisational structure or some combination.\n\nThe study would need a theoretically informed question, transparent sampling and analysis, evidence that can challenge the preferred explanation, and conclusions exposed to peer review. It should also include negative cases rather than reporting only successful implementation.\n\nAn industrial method or tool can still be part of the doctorate. Developing and testing one may produce valuable research evidence. But “the company liked the tool” or “the dashboard was implemented” isn't yet a scientific contribution. The research contribution lies in explaining what the intervention changed, through which mechanism, in what context and with what limitations.\n\nI would therefore want two linked outputs: something that helps participating companies act, and knowledge that helps researchers and organisations beyond those companies understand the problem differently. If the study produces only local recommendations, it is too close to consultancy. If it produces abstract explanation without engaging with actual implementation, it would miss the purpose of this particular project."},
+  {"id":23,"topic":"research-design","title":"What would you do during the first six to twelve months before proposing a solution?","answer":"My first priority would be to understand the project I'm joining rather than behave as though COMPASS begins with my employment.\n\nI would start by mapping the work already completed in COMPASS and ReShare: the existing research questions, datasets, publications, company relationships and planned studies. Sinah Malz's current indicator research is especially important because a new study should build on that descriptive foundation rather than repeat another general mapping of current practice.\n\nIn parallel, I would develop the conceptual foundation. That would include literature on sustainability and circularity indicators, performance-measurement systems, integrated product and production development, knowledge boundaries, shared understanding and organisational implementation. The aim would not be to collect theories indiscriminately. It would be to define the phenomenon more precisely and identify which concepts are actually needed to explain it.\n\nThe early empirical work would focus on current practice. I would map:\n• Which indicators the partner companies use or are trying to develop.\n• Which objectives those indicators are intended to represent.\n• Which decisions they are expected to influence.\n• Who defines them, supplies their data, interprets them and acts on them.\n• Where participants experience ambiguity, conflict or loss of influence.\n\nThat could involve exploratory interviews, documents, existing indicator definitions and observations of suitable meetings. I would use this phase to test whether my proposed unit of analysis is observable and whether the required data can genuinely be accessed.\n\nAt the same time, I would establish the research infrastructure: ethics approval, consent procedures, confidentiality boundaries, publication expectations, company contacts and a protocol for handling cross-company data.\n\nBy approximately the middle of the first year, I would want a defensible research problem, an explicit conceptual framework, a justified case-selection strategy and a piloted data-collection protocol. I would also begin within-case analysis early instead of collecting everything first and postponing thinking until later.\n\nOnly then would I decide whether an intervention or method should be developed, and what problem it should address. The first year should produce more than preparation—possibly a literature paper, conceptual paper or rigorous baseline study—but I wouldn't force a solution before understanding the existing system."},
+  {"id":24,"topic":"research-design","title":"What might your unit of analysis be, and how would you select cases, decisions and participants?","answer":"The unit of analysis has to follow the research question. If the question concerns how indicators influence decisions, “the company” is too broad and “the individual employee” is probably too narrow.\n\nA useful provisional unit could be an indicator-in-use episode: the movement and use of one sustainability or circularity indicator within a bounded product or production-development decision.\n\nFor example, the episode might begin when an indicator is translated from a strategic objective into a project requirement. It could then follow the indicator through calculation, interpretation, negotiation at a development gate and whatever action follows. That creates a boundary around the phenomenon while still allowing several organisational levels and functions to be studied.\n\nIn one possible design, each partner company would be an organisational case, with several indicator-decision episodes as embedded units. But if the research later focuses on implementing and evaluating a method, the implementation initiative itself might become the case. I would make that choice explicit rather than moving loosely between companies, projects, workshops and individuals as though they were equivalent units.\n\nI would select cases theoretically. The goal wouldn't be four companies simply because four are available. I would look for variation that helps examine the proposed explanation—for example:\n• Indicators with stronger and weaker operational integration.\n• Product and production decisions.\n• More mature and newly introduced indicators.\n• Decisions involving different levels of cross-functional dependence.\n• Successful, disputed and abandoned uses.\n\nSimilar cases can show whether a mechanism repeats. Contrasting cases can reveal the conditions under which it changes.\n\nParticipant selection should follow the indicator's actual path rather than rely only on seniority or job title. I would seek the strategic sponsor, indicator owner, data producers, people who translate it, intended decision-users and functions affected by the outcome. I would also include non-users and sceptical participants because they may reveal why the formal process doesn't match actual practice.\n\nI wouldn't claim saturation merely because a target number of interviews had been completed. I would ask whether each role in the process is represented, whether new evidence continues to alter the explanation and whether negative or competing accounts have been investigated."},
+  {"id":25,"topic":"research-design","title":"What methods and data would let you follow an indicator into an actual decision?","answer":"I would try to reconstruct the indicator's biography: where it came from, how it was defined, how it travelled and what happened when it reached a decision.\n\nInterviews would be necessary, but they would only show participants' accounts of the process. I would combine four types of evidence.\n\nThe first is the formal system: sustainability strategies, indicator definitions, calculation procedures, dashboards, development-gate templates, responsibility descriptions and targets. These show how the organisation says the indicator should work.\n\nThe second is enacted use. Where access permits, I would observe meetings, design reviews, workshops or gates where the indicator is introduced or discussed. Observation could reveal who raises it, which assumptions are questioned, which functions participate, how trade-offs are handled and whether the indicator survives into the decision rationale.\n\nThe third is participants' interpretation. I would interview people at different points in the process, ideally more than once. Using the actual indicator, a decision document or a lifecycle scenario during the interview could make the discussion more concrete than asking generally whether sustainability is integrated.\n\nThe fourth is documentary and digital traces: meeting minutes, decision logs, changes in indicator definitions, versions of calculations, action lists or system-usage data. These can help establish sequence and show whether an indicator was present before or only documented after a choice.\n\nAnalytically, I would construct a timeline for each episode and compare the intended process with what occurred. Coding could examine changes in meaning, ownership, timing, uncertainty, conflict and decision weight. Within-case explanation building would come before cross-case pattern comparison.\n\nA longitudinal design would be especially valuable because retrospective interviews tend to make organisational processes appear more orderly than they were. Following an indicator before, during and after a decision would let the study observe negotiation and adaptation directly.\n\nEven then, I would be cautious about causality. A decision changing after an indicator appears doesn't prove that the indicator caused the change. I would look for process evidence: whether participants used it in their reasoning, whether alternatives were reconsidered, whether actions were assigned and whether competing explanations fit the sequence better."},
+  {"id":26,"topic":"research-design","title":"How would you co-develop something with industry without turning the doctorate into consultancy?","answer":"I would separate collaboration from surrendering the research logic.\n\nCompany participants should influence the understanding of the practical problem. They possess knowledge of the product, production system, organisational constraints and decision process that the researcher doesn't. They can also help assess whether an emerging method is understandable and usable in their setting.\n\nBut the research team remains responsible for the scientific question, theoretical framing, case selection, analysis and strength of the conclusions. A company can challenge an interpretation and provide missing evidence, but it shouldn't determine that an inconvenient finding is excluded.\n\nI noticed that Säfsten and colleagues' recent transdisciplinary research framework follows a useful sequence: mapping the current state, analysing it and defining a desired state, implementing development activities, and then following both the activities and the wider project goals. That prevents the collaboration from beginning with a preferred tool.\n\nI could imagine a similar iterative logic here:\n1. Develop a descriptive explanation of current indicator use.\n2. Identify a bounded problem jointly with relevant participants.\n3. Derive design requirements from both research and practice.\n4. Co-develop or adapt a method, representation or decision routine.\n5. Observe its implementation.\n6. Evaluate what changed and why.\n\nThe company-specific output might be an indicator-use process, workshop format or decision-support method. The research output would be the design knowledge behind it: which problem it addresses, which properties matter, how it interacts with organisational conditions and where it fails.\n\nI would also distinguish usability from validation. Participants finding a tool clear and useful is relevant evidence, but it doesn't establish that shared understanding improved or that decisions changed. That requires separate evaluation.\n\nFinally, expectations should be explicit from the beginning: what practical feedback the companies will receive, what lies outside the doctorate, how publication and confidentiality work and what happens when a requested activity doesn't support the research question. Consultancy aims primarily to solve the client's problem. Collaborative research can help solve it, but it must also learn systematically from the attempt."},
+  {"id":27,"topic":"research-design","title":"How would you evaluate shared understanding and decision use rather than merely adoption or satisfaction?","answer":"I would separate at least four outcomes: interpretive understanding, coordination, decision use and eventual sustainability performance.\n\nInterpretive understanding concerns whether participants understand the indicator's purpose, definition, boundary, assumptions and limitations. I might ask individuals from different functions to explain the indicator or respond to the same decision scenario before and after an intervention. The aim wouldn't be identical answers, but sufficient overlap and accurate recognition of where interpretations differ.\n\nCoordination concerns whether people understand their dependencies. Can a designer explain why production questions a particular material choice? Can purchasing identify which supplier data the sustainability calculation requires? Can participants locate where responsibility passes between them? Observations of meetings could show whether questions become more precise, hidden assumptions are surfaced and unresolved issues are assigned rather than circulated.\n\nDecision use requires behavioural evidence. Was the indicator introduced while alternatives were still open? Was it included in the decision rationale? Did it cause an assumption to be checked, an alternative to be reconsidered, a responsibility to be assigned or a design to change? A decision can legitimately remain unchanged, but the evidence should show whether the indicator was considered seriously rather than merely displayed.\n\nSustainability performance is further downstream. A better discussion doesn't automatically reduce environmental impact, and many outcomes appear after the doctoral observation period. I would therefore distinguish intermediate effects—understanding and decision behaviour—from final product or system outcomes.\n\nAdoption and satisfaction would still be recorded, but as weak intermediate signals. A dashboard can be installed without being used, and participants can enjoy a workshop without changing their practice.\n\nA stronger design would combine a baseline and follow-up, repeated observation, documentary traces and contrasting decision episodes. I would also look for negative effects: information overload, strategic gaming, false precision or one function gaining control of how sustainability is defined.\n\nI still wouldn't claim a simple causal effect. Organisational changes occur alongside other initiatives. The aim would be to build a credible process explanation by triangulating what participants say, what happens in interaction and what appears in the decision record."},
+  {"id":28,"topic":"research-design","title":"What could the theoretical and practical contributions be, and how would you keep them distinct?","answer":"I would distinguish empirical, theoretical, practical and potentially methodological contributions.\n\nThe empirical contribution would document how sustainability and circularity indicators actually move through product-realisation decisions. That could reveal gaps between formal performance-measurement systems and everyday use, including failed, contested or adapted indicators.\n\nThe theoretical contribution would have to explain more than the existence of those gaps. One possibility is a mechanism-based explanation of how indicator characteristics, boundary complexity and organisational conditions interact to produce—or prevent—shared understanding and decision influence.\n\nFor example, the research might show that a technically credible indicator only becomes influential when its level of abstraction matches the decision, its meaning can be translated between functions and responsibility exists for resolving the consequences it exposes. The contribution would lie in specifying those relationships and their boundary conditions, potentially refining theory around performance measurement, knowledge integration or boundary objects in product realisation.\n\nI wouldn't promise all three theoretical areas in advance. The empirical work should determine which conversation the thesis can genuinely advance.\n\nThe practical contribution could be a diagnostic method or a set of design principles that helps companies:\n• Identify the decision an indicator is meant to support.\n• Assess the organisational and knowledge boundaries involved.\n• Clarify definitions, ownership and data responsibility.\n• Adapt the indicator's representation to different users.\n• Embed it at an appropriate point in the process.\n• Evaluate whether it changes understanding and action.\n\nThat output might include templates, workshop methods or implementation guidance, but producing a framework isn't automatically a contribution. It needs a traceable foundation, a clearly defined purpose and evaluation in relevant contexts.\n\nA methodological contribution may also emerge if the project develops a rigorous way to trace and evaluate indicator use across decision episodes, although I wouldn't claim that before seeing whether the method is genuinely novel.\n\nThe distinction I would maintain is this: the theoretical contribution explains why and under which conditions something happens; the practical contribution helps someone act on that explanation. A tool may be useful without advancing theory, while an explanatory model may be scientifically valuable but unusable until it is translated.\n\nThe strongest doctoral work would connect them without collapsing them: company-specific applications, transferable design knowledge and a scientific explanation whose limitations are explicit."},
+  {"id":29,"topic":"thesis","title":"Explain your thesis in two minutes: the problem, research questions, design, main finding and contribution.","answer":"My thesis examined why knowledge generated when products return from use wasn't systematically influencing the development of future products at a PSS-oriented OEM.\n\nThe starting assumption was that a product-service-system provider should have a learning advantage. Because it retains a longer relationship with its products, and in some cases ownership of them, it has access to maintenance, use, refurbishment and end-of-use knowledge that a conventional manufacturer may lose after sale. That knowledge could support remanufacturing and improve future product design.\n\nBut access to a product isn't the same as organisational learning. We therefore studied how the PSS setting affected the organisational conditions for transferring end-of-use knowledge into product development, and what prevented that feedback in practice.\n\nWe used a qualitative embedded case study at Toyota Material Handling. The study involved 23 respondents: 18 live semi-structured interview sessions and five written responses from product-development participants. We also conducted six stakeholder-mapping workshops and used observations, internal documents and operational material. The case included central functions and three embedded operational settings within the same OEM.\n\nOur main finding was that PSS created visibility and the structural possibility of learning, but didn't activate the feedback by itself. Information had to cross two thresholds.\n\nThe transfer threshold concerned whether knowledge could leave the operational setting. It involved management commitment, organisational positioning, feedback channels and incentive alignment.\n\nThe use threshold concerned whether product development could recognise and apply what arrived. It involved awareness, end-of-use knowledge, a designated receiver and translation into a form relevant to product-development decisions.\n\nAcross those conditions, we identified three recurring barriers: structural decoupling, a mismatch in the financial reasoning used by different parts of the organisation, and operational knowledge that hadn't been translated into design-relevant evidence.\n\nThe contribution was therefore an organisational explanation of why lifecycle access doesn't automatically become product-development learning. We expressed that through the eight conditions, two thresholds and three barriers.\n\nIt remains a single-case explanation. We didn't compare a non-PSS company, test an intervention or establish a causal sequence. So I see the model as a set of analytically grounded propositions that now require testing and refinement in other contexts."},
+  {"id":30,"topic":"thesis","title":"How did you move from Toyota's broad net-zero brief to organisational conditions and information flow?","answer":"The narrowing happened in several steps rather than through one decision at the beginning.\n\nToyota's original brief was deliberately broad: explore a research direction that could contribute to its net-zero ambitions. Circularity and remanufacturing were natural starting points for me because several of my master's courses had already developed that interest.\n\nBut remanufacturing was still a topic, not a research problem. We therefore began by examining the literature and speaking with people in the company to understand what was already happening.\n\nThose early discussions changed our initial picture. Remanufacturing and refurbishment weren't completely absent. Relevant engineering and operational knowledge existed in parts of the organisation, and some activities were already being performed. That meant the problem couldn't be reduced to a lack of technical capability.\n\nWhat became more visible was the separation between those activities and new-product development. People working with products later in their lifecycle learned about failures, component condition, disassembly and recovery possibilities. But that knowledge didn't appear to enter product development systematically or with enough weight to affect its decisions.\n\nThat observation also connected with the literature. PSS research often presents continued ownership and lifecycle involvement as an opportunity for circularity and organisational learning. We began to question the mechanism behind that assumption. If the company had access to products and operational experience, what organisational conditions were still required for the knowledge to travel and be used?\n\nThat gave us a progressively narrower chain:\nNet-zero ambition → circularity → remanufacturing → end-of-use knowledge → feedback into product development → organisational conditions affecting that feedback.\n\nWe didn't conclude that technical barriers were unimportant. Rather, within the evidence and scope available to us, the organisational interface appeared to be the more significant and less understood problem."},
+  {"id":31,"topic":"thesis","title":"What role did the PSS business model play, and why didn't ownership automatically create feedback?","answer":"The PSS model created the reason the information opportunity existed in the first place.\n\nIn a conventional sales model, the manufacturer may lose visibility once the product is sold. A PSS-oriented provider can retain ownership, contractual involvement or an ongoing service relationship. That can provide access to product condition, maintenance history, failures, utilisation and end-of-use activities. It may also give the provider a stronger economic interest in lifecycle cost, reliability and value recovery.\n\nSo the PSS model can create at least three enabling conditions: access to products, access to lifecycle information and an incentive to retain value over a longer period.\n\nOur case showed that those opportunities don't automatically connect the organisation.\n\nThe knowledge was often generated within operational settings whose immediate responsibility was to manage service, refurbishment, recovery or local performance. Product development operated with different time horizons, evidence requirements and decision processes. Continued ownership didn't itself create a formal feedback route, identify who should receive the information or translate an operational observation into a design requirement.\n\nThe financial logic could also differ. A later-lifecycle unit may see the recoverable value of a component or the recurring cost of a design problem. Product development may assess the proposed change against development cost, unit cost, technical risk and expected sales. The lifecycle benefit can therefore be visible in one part of the organisation without carrying equivalent weight in another.\n\nThat is why I would describe PSS as an enabling structure, not a sufficient condition. It increases the possibility of lifecycle learning, but the organisation still needs channels, responsibilities, incentives and translation mechanisms.\n\nI would also be cautious about making a causal claim. We had no non-PSS comparison, so we couldn't isolate the effect of the business model or conclude that PSS organisations generally perform better at feedback. We could show how the opportunity and the organisational gap coexisted within this particular PSS-oriented case."},
+  {"id":32,"topic":"methodology","title":"Why did you use a qualitative single embedded case, what were the embedded units, and why wasn't it a three-case study?","answer":"The research questions were concerned with how and why an organisational process worked as it did. We needed to understand relationships, interpretations, responsibilities and information movement within their real organisational context. A qualitative case study was therefore more appropriate than trying to measure the frequency of isolated variables without first understanding the mechanism.\n\nToyota was also an information-rich setting for the question. It combined a PSS orientation, continued contact with products and existing later-lifecycle activities. That allowed us to examine a situation in which the theoretical opportunity for feedback was present.\n\nThe overall case was one PSS-oriented OEM and its organisational system for transferring end-of-use knowledge into product development.\n\nWithin that case, we examined central functions and three operational settings associated with later-lifecycle activities. Those settings gave us internal variation in organisational position, maturity, knowledge and connection to the wider company. They were embedded units because they were parts of the same organisational case and related to the same central product-development system.\n\nCalling them three independent cases would have implied that they had separate organisational contexts and could provide replication in the same way as three companies. They didn't. They shared corporate structures, strategy and central functions, and their evidence wasn't independent.\n\nWe could still compare patterns between them. That helped us see which conditions recurred and where the settings differed. But, methodologically, it was a comparison between embedded settings within one case rather than a three-company or three-site multiple-case design.\n\nThe design gave us contextual depth, but it restricted the kind of generalisation we could make. We couldn't estimate how common the barriers were across industry. The intended generalisation was analytical: to develop an explanation that another study could examine, challenge or refine in other organisational settings."},
+  {"id":33,"topic":"methodology","title":"How did you select respondents and evidence, what exactly was the dataset, and how did you handle uneven evidence?","answer":"We selected participants according to their position in the proposed information pathway rather than trying to create a statistically representative sample.\n\nWe needed perspectives from where end-of-use knowledge was generated, from organisational roles that could transfer or translate it, and from product development, where the knowledge was expected to be received and used. The embedded settings also allowed us to compare different organisational arrangements within the same case.\n\nThe final dataset involved 23 respondents:\n• 18 live semi-structured interview sessions.\n• Five written responses from product-development participants.\n• Six stakeholder-mapping workshops as a separate form of evidence.\n• Supporting observations, internal documents and operational material.\n\nIt is important not to combine those into “more than 25 interviews.” The workshops created evidence through interaction and mapping, but they weren't interviews.\n\nThe different sources served different purposes. Interviews gave us individual accounts and explanations. The stakeholder-mapping workshops helped make actors, information relationships and missing connections visible. Documents and operational material helped us understand formal structures and the activities being discussed. Observations gave additional context for how work occurred.\n\nThe evidence was uneven. The three embedded settings didn't provide identical amounts or types of material, and the written product-development responses didn't provide the same depth or follow-up possibilities as live interviews.\n\nThat limits comparison. We couldn't treat the absence of a theme in a thinner setting as proof that the condition didn't exist there. Instead, we looked for convergence across sources, distinguished strong recurring patterns from more tentative interpretations and stated the uneven access as a limitation.\n\nI also wouldn't claim complete saturation across every function. The defensible claim is that we captured several positions along the information path and developed a coherent explanation from multiple sources, while recognising that some parts of that path were more visible to us than others."},
+  {"id":34,"topic":"methodology","title":"How did you conduct the literature review, and why do you call it PRISMA-inspired rather than a strict systematic review?","answer":"The literature process served two purposes: establishing what was known about PSS, remanufacturing, information feedback and organisational conditions, and helping us progressively refine the empirical problem.\n\nWe searched through UniSearch and documented the screening stages. The initial search produced 2,177 records. After the initial screening, 75 remained for closer examination. The final database-derived set contained 51 sources. We then added 27 relevant sources through backward and forward snowballing, producing a final literature base of 78 sources.\n\nPRISMA influenced how we documented identification, screening and inclusion. It gave the process a visible structure and made the reduction from the initial search to the final literature base more transparent.\n\nHowever, I would call it PRISMA-inspired because we weren't conducting a standalone systematic review with the purpose of exhaustively answering a separate review question. The literature process was part of an evolving qualitative case study. The empirical problem developed alongside it, and snowballing was important because relevant concepts crossed several bodies of literature.\n\nUsing UniSearch rather than a carefully justified set of discipline-specific databases also affects coverage. Search terminology influences which traditions become visible, especially when similar organisational phenomena use different language. Researcher judgement also entered screening and snowballing.\n\nSo the strength was a documented and relatively broad search combined with citation-based expansion. The limitation is that we shouldn't represent the 78 sources as a complete or reproducible population of all relevant literature in the way a strict systematic review might attempt to do.\n\nThe careful wording is therefore not modesty for its own sake. It distinguishes a transparent literature process supporting case research from a systematic review that would need to satisfy a different methodological standard."},
+  {"id":35,"topic":"methodology","title":"How did affinity analysis, mind mapping, cross-case analysis and pattern matching work together? Was the reasoning inductive, deductive or abductive?","answer":"The methods addressed different stages of moving from a large and fragmented body of material towards an explanatory model.\n\nAffinity analysis helped us work close to the empirical material. We grouped related observations, statements and issues according to their meaning rather than forcing every piece immediately into our initial theoretical categories. This allowed recurring organisational concerns to become visible across participants and settings.\n\nMind mapping helped us move from categories to relationships. The problem wasn't simply to identify a list of barriers. We needed to understand how actors, information, channels, incentives and product-development decisions were connected. The visual mapping helped us explore which conditions occurred before transfer, which affected use and how different barriers interacted.\n\nWe then compared the three embedded operational settings. The thesis referred to cross-case analysis, but I would be precise in the interview: it was cross-setting or cross-embedded-unit comparison within one organisational case. We examined which patterns recurred, which differed and how those differences related to organisational context.\n\nPattern matching connected the empirical analysis back to theory. We compared the patterns we observed with what the literature led us to expect about PSS, information feedback and organisational conditions. Agreement strengthened an interpretation; differences forced us to revise it or search for another explanation.\n\nThat is why I would describe the reasoning as abductive.\n\nIt wasn't purely deductive because we didn't begin with the eight-condition model and test whether the case confirmed it. It wasn't purely inductive because the literature shaped what we looked for and how we interpreted the material.\n\nWe moved repeatedly between evidence and theory. A good example is the expectation that PSS ownership should support feedback. The case showed that lifecycle access and operational knowledge existed, but systematic feedback remained weak. That tension required a more specific explanation, which eventually became the distinction between transfer and use thresholds.\n\nThe analytical chain was therefore:\nEmpirical material → affinity groupings → relationships and setting comparisons → theoretical pattern matching → revised explanation → eight conditions, two thresholds and three barriers."},
+  {"id":36,"topic":"methodology","title":"Explain the eight organisational conditions, two thresholds and three barriers simply but precisely.","answer":"The model starts from the idea that useful information has to overcome two different organisational problems before it can influence product development.\n\nThe first is the transfer threshold: can the knowledge leave the part of the organisation where it is generated?\n\nFour conditions affected that.\n\nManagement commitment concerns whether feedback has legitimacy, attention and resources rather than depending entirely on individual enthusiasm.\n\nOrganisational positioning concerns where the later-lifecycle activity sits in relation to central functions and product development. Distance can be geographical, hierarchical or relational.\n\nFeedback channels concern whether there is a recognised and recurring route for information, with enough richness for the knowledge being transferred. An informal personal contact may transfer isolated observations but remain vulnerable when people or priorities change.\n\nIncentive alignment concerns whether the originating unit benefits from sharing the knowledge or is rewarded mainly for its local operational performance. Information transfer requires time and effort, so it may not occur if those costs are local while the benefit appears elsewhere.\n\nThe second is the use threshold: if information reaches product development, can it be recognised and applied?\n\nAwareness means that product-development participants know the later-lifecycle activities and information exist and understand their potential relevance.\n\nEnd-of-use knowledge concerns the ability to interpret what is being observed. Raw failure, condition or recovery data doesn't explain itself.\n\nA designated receiver means that an identifiable role or process is responsible for evaluating the information. Sending it generally “to product development” leaves accountability unclear.\n\nKnowledge translation means converting operational or partly tacit knowledge into evidence that fits product-development work—for example, a requirement, failure pattern, design implication or economic case.\n\nThe three barriers summarise how these conditions combined.\n\nStructural decoupling describes the separation and weakness of the routes between later-lifecycle activities and product development.\n\nFinancial-rationale mismatch describes lifecycle value being recognised in one part of the business but not carrying the same weight within product-development decisions.\n\nUntranslated operational knowledge describes useful experience remaining in anecdotes, local practice or data formats that product development couldn't readily interpret and apply.\n\nThe two thresholds shouldn't be treated as a rigid universal sequence or maturity score. The conditions interact, and the model came from one case. Its value is to distinguish failure to transfer from failure to use, because improving only the channel won't help if no receiver can translate or act on what arrives."},
+  {"id":37,"topic":"thesis","title":"What was your most important finding, and what was the strongest evidence for it?","answer":"The most important finding was that lifecycle visibility doesn't automatically become organisational learning.\n\nThe PSS setting gave the company access to returned products, operational activities and knowledge from later lifecycle stages. That is a genuine advantage. But the knowledge could still remain local, travel through fragile informal relationships or reach product development without a form, receiver or rationale that gave it influence.\n\nThe strongest evidence wasn't one quotation or one workshop. It was the convergence of a pattern across different organisational positions and evidence sources.\n\nParticipants connected to later-lifecycle activities could describe knowledge generated through handling products, assessing their condition and carrying out recovery-related work. The stakeholder mappings made the weak or inconsistent connections towards formal product-development structures visible. Product-development perspectives indicated that there wasn't a systematic, established route through which this knowledge was received and translated. Documents, observations and operational material helped establish that the activities themselves were real rather than merely proposed.\n\nThe variation between embedded settings was also important. Feedback wasn't completely absent. Individual relationships and isolated examples existed. That actually strengthened the organisational interpretation because it showed that transfer was possible, but depended on particular people or local arrangements rather than a robust company-wide mechanism.\n\nI would therefore avoid the absolute statement that end-of-use knowledge never influenced design. The evidence couldn't support that. The defensible conclusion is that the feedback wasn't systematic and that its influence depended on organisational conditions not created automatically by PSS ownership.\n\nThat distinction is the finding: the company possessed lifecycle access, but the organisational capacity to convert access into repeatable product-development learning remained incomplete."},
+  {"id":38,"topic":"methodology","title":"What alternative explanations, contradictions or researcher interpretations could challenge your conclusion?","answer":"The main rival explanation is that the information didn't influence product development because it wasn't sufficiently relevant or valuable—not because organisational transfer had failed.\n\nAn operational observation may be real but too product-specific, uncertain or difficult to generalise. A design change may also cost more than the lifecycle benefit it creates. What we described as a financial-rationale mismatch could sometimes be a legitimate decision based on risk, development cost or insufficient evidence.\n\nTiming is another explanation. Product-development cycles are long. Knowledge may have influenced an earlier or later project outside our observation period, or effects may appear through informal channels that weren't visible in formal documents.\n\nUneven evidence creates another challenge. Five product-development participants provided written responses rather than live interviews, limiting follow-up. The operational side of the information path may therefore have been more visible to us than the receiving side. That could make the disconnection appear stronger.\n\nThere were also contradictions within the case. Isolated feedback and personal relationships existed, and the embedded settings weren't identical in maturity or organisational connection. The pattern was therefore not complete absence, but inconsistent and condition-dependent use.\n\nFinally, the thresholds and barriers are analytical constructions. Another researcher might group the same evidence differently, identify additional conditions or argue that power, organisational identity or product strategy deserves a more central role.\n\nThese alternatives don't make the study invalid. They define what it can establish. We developed a coherent explanation that fit several evidence sources, but we didn't prove that organisational conditions were the only cause or rank their relative importance.\n\nA comparison with non-PSS organisations could examine the business-model argument. A longitudinal study could follow actual information into a development decision. An intervention could test whether creating a receiver, translation routine or financial representation changes the process. Those would be stronger tests of the explanation."},
+  {"id":39,"topic":"methodology","title":"How did you support credibility, triangulation and transparency, and what was your individual role in the jointly authored thesis?","answer":"We tried to support credibility by building the explanation from different perspectives and forms of evidence rather than relying on one interview group.\n\nThe 23 respondents occupied different positions along the information path. Interviews and written responses were considered alongside six stakeholder-mapping workshops, observations, internal documents and operational material. Agreement between those sources increased confidence in a pattern, while differences helped reveal where the organisational settings or interpretations diverged.\n\nThe embedded design also allowed comparison within the organisation. If a proposed condition appeared differently across the three operational settings, we could examine whether organisational position or maturity helped explain the variation instead of treating the case as homogeneous.\n\nPattern matching made the theoretical comparison explicit, while the abductive process allowed empirical contradictions to alter the developing model. Discussing interpretations between two authors also helped expose assumptions that one researcher working alone might not notice.\n\nNone of that removes researcher influence. We entered the study with an interest in remanufacturing and PSS, which could create confirmation bias. Access was mediated through the organisation, evidence was uneven, and affinity grouping, condition definitions and threshold construction required judgement. Triangulation strengthens an interpretation, but it doesn't turn qualitative analysis into an objective measurement.\n\nTransparency therefore matters as much as triangulation: showing how the research problem evolved, distinguishing interviews from workshops, explaining the embedded case boundary and stating what the evidence couldn't establish.\n\nBecause the thesis was jointly authored, I also need to distinguish collective and individual work precisely. I should not answer that part with “we both did everything.”\n\nBefore the interview, insert a verified division here:\nJohan and I jointly handled [shared research design, analysis and writing activities]. My main responsibilities were [specific interviews, workshops, literature sections, analysis stages or chapters Jai led], while Johan primarily handled [his verified responsibilities]. We cross-reviewed [specific shared outputs], so the final framework was jointly developed, but these were the parts for which I was individually accountable.\n\nUntil those details are confirmed from our working records, it would be safer to acknowledge the joint authorship than invent an equal or individual division."},
+  {"id":40,"topic":"methodology","title":"What is the genuine bridge from your thesis to COMPASS, and where does that bridge end?","answer":"The bridge is a shared organisational mechanism, not simply the presence of circularity in both topics.\n\nMy thesis examined how knowledge from later-lifecycle activities travelled—or failed to travel—into product development. COMPASS examines how sustainability and circularity indicators move from strategy into everyday product-realisation decisions across organisational levels and functions.\n\nIn both settings, information exists in one part of a system and is expected to influence work elsewhere. The challenge concerns ownership, translation, receivers, incentives, different forms of specialised knowledge and the weight the information receives when it reaches a decision.\n\nThat gives me a relevant lens. The thesis taught me not to equate access with use and not to assume that creating a channel solves the problem. An indicator may be visible in a dashboard in the same way that lifecycle data may exist in an operational database, while still lacking interpretation or decision influence.\n\nBut the bridge has a clear boundary.\n\nMy thesis studied feedback from end-of-use activities into product development within one PSS-oriented OEM. It didn't study the selection and implementation of sustainability indicators, vertical alignment between strategy and operations, integration with production development or comparative use across several companies.\n\nThe eight-condition framework also shouldn't be transferred directly into COMPASS. It may provide sensitising concepts—such as organisational positioning, receivers, incentives and translation—but indicators introduce additional issues: construct validity, target setting, data governance, interactions between measures and the risk that measurement changes behaviour.\n\nSo I wouldn't enter COMPASS expecting it to confirm my thesis. The thesis gives me experience with a related information-to-decision problem. COMPASS provides the opportunity to study a broader and theoretically distinct form of that problem, with new concepts, cases and methods."},
+  {"id":41,"topic":"methodology","title":"Your application mentions more than 25 interviews, three Toyota sites and KPI development. What is the exact record?","answer":"The exact record differs from the compressed wording in my application, and I would correct it directly.\n\nThe thesis involved 23 respondents: 18 live semi-structured interview sessions and five written responses from product-development participants. We also conducted six stakeholder-mapping workshops. I combined those different engagements too loosely when I wrote “more than 25 interviews.” That wasn't accurate because workshops and written responses shouldn't be relabelled as interviews.\n\nThe design was one embedded case at one PSS-oriented OEM. It included central functions and three internal operational settings. Those settings provided internal comparison, but they weren't three independent company cases, and I shouldn't describe them simply as three Toyota sites.\n\nThe thesis also didn't develop or validate a KPI system. We identified organisational conditions involving information flow, incentives, financial reasoning and decision use, and we developed the eight-condition, two-threshold framework. That experience is relevant to understanding why performance information may or may not influence decisions, but KPI selection, development and validation remain areas I need to learn.\n\nThe wording in my application tried to communicate the breadth and relevance of the work, but it overstated those three aspects. That was my responsibility. The correction doesn't weaken the actual thesis: it was still a substantial embedded qualitative study involving multiple functions, evidence sources and organisational settings. But research depends on distinctions like respondent versus interview, embedded unit versus independent case, and diagnostic framework versus validated KPI system.\n\nI would rather establish the precise record now than defend wording that I know isn't methodologically accurate."},
+  {"id":42,"topic":"personal","title":"Tell us about a situation in which progress had stalled and you took ownership. What did you do, and what changed?","answer":"A good example comes from Dodge 'n Burns. As the number of projects and people increased, delivery became less predictable. People were working hard, but briefs were inconsistent, responsibility became unclear during handovers, and problems often became visible only when a deadline was already at risk.\n\nI began by looking at where projects were actually slowing down. The common problem was not individual performance; it was the absence of a shared structure around what had been agreed, who owned the next stage and when concerns should be raised.\n\nI worked with the team to standardise the initial brief, assign a clear owner at each stage and introduce short status reviews focused on decisions and blockers. I was persistent about maintaining the routine, but we adjusted it when parts of it created unnecessary work.\n\nWe recorded an approximately 25% reduction in average project-delivery time. More importantly, delays became visible earlier and people knew who was responsible for moving each project forward.\n\nThat experience shaped what ownership means to me. It is not taking all the work onto myself. It is understanding what has stalled, creating enough structure for people to act, and remaining accountable until the new way of working becomes reliable."},
+  {"id":43,"topic":"personal","title":"Give us an example of working with people who had different priorities or professional backgrounds.","answer":"The Toyota thesis required us to work across functions that understood the same product lifecycle very differently.\n\nPeople in refurbishment and remanufacturing dealt with returned-product condition, repair effort, throughput and residual value. Product Development worked with requirements, testing, technical risk, cost and development schedules. Sustainability and commercial functions brought yet other priorities. These perspectives were not necessarily incompatible, but they could not simply be combined as if everyone meant the same thing.\n\nWe kept a common set of research themes while adapting questions to each respondent's actual knowledge. The stakeholder maps also helped make dependencies visible: where information originated, who required it and where people believed it should enter a decision. During analysis, we compared the accounts rather than selecting one function's description as the correct version.\n\nThat was how the financial-rationale mismatch became visible. The lifecycle benefit of a design change could appear in one part of the organisation while its cost and risk appeared in another.\n\nThe outcome was not consensus between all the functions—we were not running an organisational change intervention. It was a more accurate explanation that represented the different priorities without reducing the problem to poor communication. When working across backgrounds, I try to find the decision or object people share, make their different assumptions explicit and use evidence to understand the disagreement."},
+  {"id":44,"topic":"personal","title":"How do you balance independent work with supervision, and when has criticism or evidence changed your view?","answer":"I do not see independence and supervision as opposites. I should be able to move the work forward myself, but I also need to recognise when a decision affects the validity or direction of the research and deserves challenge.\n\nMy preferred approach is to take a developed piece of work to supervision—an analysis, alternative explanations or a methodological choice—rather than only report what I have been doing. That gives the supervisor something concrete to question while keeping responsibility for progress with me.\n\nThe development of my thesis is a good example. We began with an interest in remanufacturing, and it would have been easy to assume that the main problem was expanding or improving that activity. Our industrial supervisor helped focus us on End-of-Use activities, while questions from our examiner and university supervisor challenged us to examine how the resulting information reached Product Development.\n\nWe did not change direction simply because they suggested another topic. We returned to the literature and early company evidence. That evidence showed that refurbishment and remanufacturing activities already existed, while the connection between their knowledge and Product Development was much less systematic. We therefore changed the research focus and defined the organisational information-flow problem more precisely.\n\nFor me, independence means taking responsibility for the reasoning. It does not mean defending my first interpretation when supervision or evidence exposes a better one."},
+  {"id":45,"topic":"personal","title":"What would you do if an industrial partner wanted an immediate recommendation, rejected a finding or tried to redirect the research?","answer":"I would begin by understanding the practical decision behind the request. An immediate need does not always require a final research conclusion. I might be able to provide a preliminary synthesis, explain possible options or facilitate a focused workshop, as long as I clearly distinguish that from a validated finding.\n\nIf the partner rejected a finding, I would treat the disagreement as potentially useful evidence. I would ask what they believe is missing: another data source, a misunderstood process, a negative case or a different interpretation. I would return to the material and discuss it with the research team. If their evidence changed the explanation, the analysis should change.\n\nIf the finding remained well supported, I would not remove it merely because it was inconvenient. I would explain the evidence and its limits carefully and involve my supervisors if the disagreement concerned publication or research integrity. A company should be able to check confidential or factually incorrect material, but that is different from controlling the academic conclusion.\n\nFor a proposed redirection, I would examine whether it strengthens the research question, access and contribution or whether it turns the doctorate into an unrelated short-term assignment. I would try to negotiate a useful response to the company while protecting the longer scientific purpose.\n\nA strong industrial research relationship should be able to accommodate disagreement without either side becoming dismissive."},
+  {"id":46,"topic":"personal","title":"How would you manage expectations, confidentiality and ethics across several partner companies?","answer":"I would treat this as part of the research design, not as administration added after the method has been chosen.\n\nBefore collecting sensitive information, I would clarify the research purpose, roles, expected company involvement, data access, consent, withdrawal, storage, anonymisation and publication process. Participants need to understand the difference between the company's involvement in the project and their individual choice to participate.\n\nThe Toyota thesis taught me that removing a company name is not always enough. A role, production process or combination of contextual details can still identify a participant or site. Across several partner companies, that risk becomes greater because comparisons may reveal commercially sensitive practices indirectly.\n\nI would therefore keep raw company material separated, restrict access according to the data-management plan and decide in advance what can be shared in cross-company workshops. I would also distinguish a confidentiality review—checking that restricted information has not been exposed—from giving a company authority to veto an academically supported result.\n\nFinally, I would keep a clear record of when I am interviewing, facilitating co-development, returning findings or making an independent analytical judgement. The researcher's role changes across those activities, and participants should not have to guess which role I am performing."},
+  {"id":47,"topic":"personal","title":"How would you organise a five-year doctorate involving research, coursework, publications, company collaboration and teaching?","answer":"I would begin with the overall research logic rather than treating coursework, papers, company work and teaching as separate lists of obligations.\n\nDuring the first year, I would concentrate on the literature, doctoral courses, ethics and data agreements, current-practice mapping and a research design agreed with the supervisors and the wider COMPASS team. I would also begin writing early, because a conceptual or methodological gap is easier to discover in a draft than in accumulated notes.\n\nThe middle years would contain the main empirical work. I would connect each data-collection phase to a defined research question and planned paper rather than collecting a large pool of material without a clear analytical purpose. If the project develops an intervention or supporting mechanism, I would preserve enough time to follow its use longitudinally rather than evaluating it immediately after a workshop.\n\nThe final phase would focus on cross-case synthesis, remaining publications and the thesis narrative connecting the individual studies.\n\nOperationally, I would plan by semester and review progress monthly against decisions, dependencies and risks—especially company access, ethics, data availability and publication lead times. I would maintain regular but purposeful contact with partners so that problems are identified before scheduled data collection fails.\n\nTeaching should be included in the workload from the beginning. Where possible, I would group preparation and teaching into predictable blocks rather than allowing it to fragment every research day. I would protect substantial periods for analysis and writing while remaining flexible during intensive teaching or fieldwork periods."},
+  {"id":48,"topic":"personal","title":"You have not yet published a peer-reviewed paper. Why are you ready for scientific writing and review?","answer":"I would answer that directly: I have not yet published a peer-reviewed article, so I do not want to present publication as an ability I have already proven.\n\nWhat I have completed is the research foundation behind it. In the thesis, we moved from a broad industrial concern to research questions, conducted and documented a literature search, built a theoretically grounded framework, justified an embedded case design, analysed several forms of evidence and repeatedly narrowed our conclusions to what the study could actually support.\n\nI also understand that converting this into a journal paper is not a matter of shortening the thesis. A paper needs a much tighter contribution, positioning within a specific scholarly conversation and a clear relationship between the claim and the evidence selected to support it.\n\nI would approach that learning process deliberately: begin drafting while the study develops, analyse strong papers in the target journal, seek critical internal review, and use a response matrix to work through reviewer comments rather than responding defensively or making untracked revisions.\n\nThe development area for me is the journal-publication process itself—selecting the contribution, working with co-authors and responding to external review. I am ready for it because I have completed substantial research, know that the next standard is different, and am comfortable revising my view when criticism is supported."},
+  {"id":49,"topic":"personal","title":"What teaching, facilitation or communication experience would you bring?","answer":"I do not yet have formal university teaching experience, so I would not present facilitation as if it were the same thing.\n\nMy closest experience includes stakeholder-mapping workshops during the thesis, mentoring early-stage entrepreneurs, communicating with international students as a student ambassador and leading a multicultural student organisation through Navitas. These roles required me to explain unfamiliar ideas, ask questions that helped people articulate their reasoning and adapt communication to people with different backgrounds.\n\nIn university teaching, I would begin with the learning outcome: what should students be able to understand or do after the session? The activity and assessment should then test that outcome rather than simply whether students remember the presentation.\n\nFor bachelor's students, I would provide more structure, worked examples and clear connections between theory and an industrial situation. At master's level, I would expect greater independence and use cases that require students to question assumptions, compare methods and defend a decision.\n\nI would also seek pedagogical training, observe experienced teachers and ask for feedback on my teaching. Facilitation gives me a useful starting point, particularly for discussion and case-based learning. Course design, assessment and formal academic teaching remain areas I would need to develop."},
+  {"id":50,"topic":"practical","title":"When could you start, are you prepared to relocate, and what would you like to ask us?","answer":"My earliest realistic start date is [CONFIRM DATE]. I understand that the vacancy mentioned September or October 2026, or another agreed date, so I would be open about any practical constraint rather than making a commitment I cannot keep.\n\nRegarding relocation: [CONFIRM whether you can relocate to Jönköping, the likely timing and any notice or housing constraint.]\n\nI understand that the role requires regular involvement with the research group, teaching and industrial partners. I would therefore answer relocation clearly, rather than suggesting that it is secondary to the research.\n\nI would prepare three questions and ask the two that have not already been answered:\n1. How do you expect the new doctoral student's work to complement the COMPASS research already under way, and where would there be room to shape an individual research contribution?\n2. What level of access do you currently expect within the partner companies—for example, access to actual product-realisation meetings and indicator data, or primarily interviews and workshops?\n3. Where do you expect the most difficult research tension to lie: developing guidance that transfers across the four companies, or adapting indicators sufficiently to each organisational context?\n\nA useful supervision follow-up would be:\n“How do you normally work with a doctoral student when an industrial need and the emerging scientific contribution begin to pull in different directions?”"},
+  {"id":51,"topic":"personal","title":"How do you handle stress and pressure?","answer":"I handle stress by first creating clarity around what is causing it. I separate what is genuinely time-critical from what is simply demanding attention, identify the decisions and dependencies involved, and decide what I can control immediately.\n\nEntrepreneurship taught me that responding to pressure with more urgency can make the situation worse. If everybody reacts to everything, ownership becomes unclear and mistakes increase. I therefore try to slow the situation down enough to establish priorities, even when the work itself needs to move quickly.\n\nOne tendency I have had to manage is taking on too much when I see something is not moving. That can help initially, but it becomes counterproductive if I quietly absorb responsibilities that should remain shared. I now try to clarify ownership and communicate capacity problems early.\n\nOutside work, badminton, cooking and spending time with people close to me help me disconnect. Professionally, however, my main approach is prioritisation, visible communication and concentrating on the next controllable action."},
+  {"id":52,"topic":"personal","title":"How do you prioritise when several things appear urgent?","answer":"I begin by asking three questions: what has the greatest consequence if it is delayed, what is blocking other people, and which decision becomes difficult to reverse if we postpone it?\n\nAt Boxall, daily operations, customer concerns, team decisions and longer-term business work could all compete for attention. Treating everything as equally urgent would have meant constantly changing focus. Immediate operational disruptions and commitments affecting customers came first. I then prioritised decisions that allowed other team members to continue working, before returning to work that was important but not immediately time-sensitive.\n\nI also communicate what is being deprioritised. A priority is only real if something else is allowed to wait. If the available capacity cannot meet all the commitments, I would rather make that trade-off visible early than allow several deadlines to fail quietly.\n\nFor research, I would use the same logic but include scientific dependency. A seemingly small methodological or access decision may deserve priority because every later stage depends on it."},
+  {"id":53,"topic":"personal","title":"Tell us about a mistake or failure and what you did afterward.","answer":"One mistake I made while developing Dodge 'n Burns was allowing project coordination to remain informal for too long as the number of clients, projects and team members increased.\n\nThe informal approach had worked when the organisation was smaller because everybody knew what was happening. As the work expanded, briefs varied, handovers became less clear and project status depended too heavily on individual conversations. My mistake was assuming that a way of working that had been effective at one scale would continue working at another.\n\nOnce the pattern became clear, I examined where projects were slowing down and worked with the team to introduce standardised briefs, clearer project ownership and regular status reviews. We subsequently reported an approximately 25% reduction in average delivery time.\n\nWhat stayed with me was not simply the value of process standardisation. It was the need to question whether a system is still appropriate as its context changes. In research, I would apply the same lesson by reviewing assumptions, methods and project routines as the study develops rather than following an initial plan simply because it once made sense."},
+  {"id":54,"topic":"personal","title":"What is a genuine weakness or development area for you?","answer":"When I see that something has stalled, my instinct is to step in, understand the problem and create structure. The weakness is that I can sometimes become involved too quickly or take on responsibility that should remain distributed across the team.\n\nThat can solve an immediate problem, but it can also make me a bottleneck or reduce the space other people have to develop their own solution. I have become more deliberate about asking questions before acting: is the problem genuinely missing ownership, or does somebody already own it and simply need support? What decision belongs to me, and what should remain with somebody else?\n\nI still want to be someone who takes responsibility. The development for me is to do that by clarifying ownership and enabling progress, rather than assuming ownership always means doing more myself."},
+  {"id":55,"topic":"personal","title":"How do you respond to criticism you disagree with?","answer":"My first response is to make sure I understand the criticism correctly. I try to restate the concern and ask what evidence, assumption or standard it is based on. That prevents me from reacting to a harsher or simpler version of what the person actually meant.\n\nThe thesis gave me useful practice in this. Questions from our supervisors changed how we understood the original problem. We did not accept a new direction automatically, but we returned to the literature and early empirical material to see whether the criticism exposed something real. In that case, it did, and we changed the focus.\n\nIf I still disagree after examining the criticism, I would explain why using the evidence and acknowledge where judgement is involved. In research, two people can interpret the same material differently without either being careless. The aim is not to agree with every criticism. It is to ensure that disagreement improves the reasoning rather than becoming personal or defensive."},
+  {"id":56,"topic":"personal","title":"How do you remain motivated when progress is slow or uncertain?","answer":"I do not expect to feel equally motivated every day, especially in a long project. I try to avoid making progress dependent on motivation by turning a large, uncertain problem into smaller questions and visible outputs.\n\nThe literature review in my thesis is a good example. The initial search produced 2,177 records, and screening them was not continuously exciting. The work became manageable because we had criteria, documented stages and a clear reason for doing it: the final framework depended on knowing which literature genuinely addressed the organisational problem.\n\nWhen the uncertainty is conceptual rather than repetitive, I return to what we are trying to understand and identify the next piece of evidence that could change our view. A useful interview, a comparison table or a short analytical memo can restore movement even when the overall answer remains unclear.\n\nFor me, persistence is not repeatedly doing the same thing. It is maintaining the direction of inquiry while being willing to change the route."},
+  {"id":57,"topic":"personal","title":"When do you ask for help rather than continuing independently?","answer":"I ask for help when the uncertainty affects the validity or direction of the work, when progress depends on access or expertise I do not have, or when I have made a serious attempt but am circling the same problem.\n\nBefore asking, I try to define the issue. I would rather approach a supervisor with the decision, what I have already examined and two possible ways forward than simply say that I am stuck. That makes it easier for them to challenge my reasoning rather than take the problem over.\n\nThe thesis showed me the value of asking early enough. The questions raised by our industrial and university supervisors helped us recognise that our broad interest in remanufacturing contained a more precise information-flow problem. Waiting until the design was fixed would have made that correction much more costly.\n\nAt the same time, I would not ask for help merely because a task is uncomfortable or difficult. The distinction I try to make is between difficulty that requires persistence and uncertainty that requires another perspective."},
+  {"id":58,"topic":"personal","title":"What role do you naturally take in a team?","answer":"I often become the person who creates structure around the work. I listen for where people understand the problem differently, try to make the common objective explicit and help turn the discussion into responsibilities and next steps.\n\nThat does not mean I always need to lead the team. In the Toyota thesis, for example, the research was jointly authored. Both of us participated in data collection and analysis, alternated interview leadership and discussed analytical disagreements until we reached a shared interpretation. At different points, one of us could lead while the other questioned or strengthened the work.\n\nI am also comfortable taking an individual analytical task away, working through it carefully and returning with something concrete for the team to discuss.\n\nThe risk in my natural role is moving towards structure before everyone has had enough space to explain their perspective. I therefore try to listen first and make sure the structure reflects the problem rather than merely my preferred way of working."},
+  {"id":59,"topic":"personal","title":"What kind of supervision helps you work effectively?","answer":"I work best with supervision that combines clear expectations, intellectual challenge and room for independent work.\n\nAt the beginning of a task, I want to understand the purpose, the expected standard and which decisions I can make independently. Between meetings, I am comfortable taking responsibility for moving the work forward. In supervision, I prefer bringing actual material—an argument, analysis or methodological choice—because specific work can be questioned more productively than a general progress report.\n\nI value supervisors who explain why a claim or method is weak rather than simply telling me how to rewrite it. That helps me improve the reasoning and eventually make better decisions independently.\n\nI would also want a regular enough rhythm that uncertainty can be raised before it becomes a major problem. With several supervisors, clarity about their respective roles and how conflicting feedback should be resolved would be especially important."},
+  {"id":60,"topic":"personal","title":"How do you handle repetitive or less intellectually interesting work?","answer":"I do not pretend that every part of research is intellectually stimulating. Screening literature, checking references, transcribing material, cleaning notes and documenting decisions can be repetitive, but the credibility of the final analysis depends on them.\n\nI manage this by connecting the task to the decision it supports, defining clear criteria and working in focused batches. During the thesis literature review, for example, the screening process was manageable because each stage had a defined purpose and inclusion logic. During qualitative analysis, marking insights by respondent and setting was slow, but it preserved the traceability needed later.\n\nI also build in quality checks rather than relying on concentration remaining constant for hours. Breaking the work into batches, reviewing a sample and recording where I stopped reduces careless inconsistency.\n\nThe fact that a task is repetitive does not make it unimportant. I find it easier to stay disciplined when I understand exactly what would become unreliable if that task were rushed."},
+  {"id":61,"topic":"personal","title":"How would your colleagues describe you, and what might they find difficult about you?","answer":"I think they would describe me as dependable, approachable and willing to take responsibility when something is not moving. I tend to connect easily with people from different backgrounds, and I usually try to understand what somebody needs before deciding how I can contribute.\n\nThey would probably also say that I am persistent and that I bring structure to uncertain situations.\n\nThe more difficult side is that I can become impatient when a problem remains vague for a long time without anyone deciding what happens next. My instinct is to move the discussion towards a plan. That can be useful, but it can also feel premature to someone who still needs time to explore the problem.\n\nI have become more conscious of distinguishing between avoidance and legitimate reflection. Sometimes a group needs a decision; sometimes it needs more room to think. I am still improving my judgement about which situation I am in."},
+  {"id":62,"topic":"personal","title":"How would you maintain a sustainable working routine during a five-year PhD?","answer":"I would not treat a PhD as a five-year sprint. There will be intensive periods around fieldwork, teaching, conferences and submission deadlines, but sustained research requires a routine that also allows concentration and recovery.\n\nI would organise the week around protected periods for reading, analysis and writing, alongside scheduled supervision, teaching and company communication. I would review workload early when several responsibilities begin competing rather than allowing overtime to become the normal solution.\n\nI also need separation from work. Badminton gives me something physical and social, while cooking, films and following football or cricket help me shift attention completely. Staying connected to my partner, family and friends is also important to me.\n\nFor me, balance does not mean every week looks identical. It means demanding periods are temporary, recovery is planned, and asking for support is treated as responsible project management rather than as evidence that I cannot cope."}
+];
+
+const TOTAL_EXPECTED = 62;
+const STORAGE_KEY = 'interview-prep-data';
+const THEME_KEY = 'interview-prep-theme';
+
+let questions = [];
+let searchQuery = '';
+let activeTopic = 'all';
+let expandedIds = new Set();
+let editingId = null;
+let allExpanded = false;
+let quizActive = false;
+let quizRevealed = false;
+let quizSeen = new Set();
+let quizCurrentId = null;
+
+/* ---------- Storage (may throw in private windows / blocked site data) ---------- */
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+
+let storageWarned = false;
+function saveQuestions() {
+  if (!lsSet(STORAGE_KEY, JSON.stringify(questions)) && !storageWarned) {
+    storageWarned = true;
+    showToast('This browser is blocking storage, so changes will not survive a reload. Copy your JSON from Backup.', 6000);
+  }
+}
+
+function loadQuestions() {
+  const saved = lsGet(STORAGE_KEY);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      const savedMap = new Map(parsed.map(q => [q.id, q]));
+      questions = DEFAULT_QUESTIONS.map(dq => {
+        const sq = savedMap.get(dq.id);
+        if (sq) return { ...dq, answer: sq.answer, topic: sq.topic || dq.topic, title: sq.title || dq.title, edited: sq.answer !== dq.answer };
+        return { ...dq, edited: false };
+      });
+      const defaultIds = new Set(DEFAULT_QUESTIONS.map(q => q.id));
+      parsed.forEach(sq => { if (!defaultIds.has(sq.id)) questions.push({ ...sq, edited: true }); });
+    } catch (e) {
+      questions = DEFAULT_QUESTIONS.map(q => ({ ...q, edited: false }));
+    }
+  } else {
+    questions = DEFAULT_QUESTIONS.map(q => ({ ...q, edited: false }));
+  }
+  questions.sort((a, b) => a.id - b.id);
+}
+
+/* ---------- Theme ----------
+   The host stamps data-theme on :root for its own light/dark. The toggle here
+   writes data-user-theme instead, so the two never overwrite each other. */
+function effectiveTheme() {
+  const el = document.documentElement;
+  const own = el.getAttribute('data-user-theme');
+  if (own === 'dark' || own === 'light') return own;
+  const host = el.getAttribute('data-theme');
+  if (host === 'dark' || host === 'light') return host;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+function loadTheme() {
+  const saved = lsGet(THEME_KEY);
+  if (saved === 'dark' || saved === 'light') document.documentElement.setAttribute('data-user-theme', saved);
+  refreshThemeButton();
+}
+
+function refreshThemeButton() {
+  const dark = effectiveTheme() === 'dark';
+  const btn = document.getElementById('btn-dark');
+  btn.innerHTML = icon(dark ? 'sun' : 'moon');
+  btn.setAttribute('aria-label', dark ? 'Switch to light theme' : 'Switch to dark theme');
+}
+
+function toggleTheme() {
+  const next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-user-theme', next);
+  lsSet(THEME_KEY, next);
+  refreshThemeButton();
+}
+
+/* Follow the host while the page has no override of its own. */
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', refreshThemeButton);
+new MutationObserver(refreshThemeButton).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+/* ---------- Text helpers ---------- */
+function esc(s) {
+  return String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
+function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
+function highlightText(text, q) {
+  const safe = esc(text);
+  if (!q) return safe;
+  return safe.replace(new RegExp('(' + escapeRegex(esc(q)) + ')', 'gi'), '<mark>$1</mark>');
+}
+/* Each sentence gets a span whose data-s matches its speech chunk index. */
+function renderAnswerHTML(text, q) {
+  return segmentsFor(text).map(function (lines) {
+    return '<p>' + lines.map(function (sents) {
+      return sents.map(function (s) {
+        return '<span class="s" data-s="' + s.i + '">' + highlightText(s.display, q) + '</span>';
+      }).join(' ');
+    }).join('<br>') + '</p>';
+  }).join('');
+}
+function topicLabel(t) {
+  return {
+    behavioral: 'Behavioral', 'phd-application': 'PhD Application', circularity: 'Circularity',
+    indicators: 'Indicators', thesis: 'Thesis', 'research-design': 'Research Design',
+    methodology: 'Methodology', personal: 'Personal', practical: 'Practical'
+  }[t] || t;
+}
+function getFiltered() {
+  return questions.filter(q =>
+    (activeTopic === 'all' || q.topic === activeTopic) &&
+    (!searchQuery ||
+      q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      q.answer.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+}
+
+function showToast(msg, dur) {
+  dur = dur || 2500;
+  const c = document.getElementById('toasts'), t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg; c.appendChild(t);
+  requestAnimationFrame(() => t.classList.add('show'));
+  setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 400); }, dur);
+}
+
+/* ---------- Speech ----------
+   The Artifact CSP blocks fetch to every host, so cloud TTS is unreachable.
+   The browser's own speechSynthesis is the only route, and needs care:
+   Chrome silently kills utterances past ~15s, so text is chunked into
+   sentences and spoken one at a time. That also gives us the sentence
+   boundaries used for follow-along highlighting. */
+const VOICE_KEY = 'interview-prep-voice';
+const RATE_KEY = 'interview-prep-rate';
+const TTS = ('speechSynthesis' in window) && (typeof SpeechSynthesisUtterance === 'function');
+
+/* Audio only. The page always displays the correct spelling. */
+const SAY = [
+  ['KPIs', 'K P Eyes'], ['KPI', 'K P I'], ['PSS', 'P S S'],
+  ['OEMs', 'O E Ms'], ['OEM', 'O E M'], ['JTH', 'J T H'],
+  ['GRACE', 'Grace'], ['COMPASS', 'Compass'], ['PRISMA', 'Prisma'], ['ReShare', 'Re-Share'],
+  ['Link\u00f6ping', 'Lin-chur-ping'], ['J\u00f6nk\u00f6ping', 'Yurn-chur-ping'],
+  ['S\u00e4fsten', 'Sef-sten'], ['Lindb\u00e4cks', 'Lind-becks'],
+  ['Fl\u00e4ktGroup', 'Flekt Group'], ['Husqvarna', 'Husk-varna'],
+  ['Wlazlak', 'Vlaz-lak'], ['Malz', 'Malts'], ['Paraskeva', 'Para-skeva']
+];
+const SAY_RX = SAY.map(function (p) {
+  return [new RegExp('\\b' + escapeRegex(p[0]) + '\\b', 'g'), p[1]];
+});
+
+function speechText(raw) {
+  var t = String(raw)
+    .replace(/\u2022\s*/g, '')
+    .replace(/^\s*\d+\.\s+/, '')
+    .replace(/\u2192/g, ' then ')
+    .replace(/\s*\u2014\s*/g, ', ')
+    .replace(/\s*\u2013\s*/g, ', ')
+    .replace(/\[[^\]]*\]/g, 'to be confirmed');
+  SAY_RX.forEach(function (p) { t = t.replace(p[0], p[1]); });
+  return t.replace(/\s+/g, ' ').trim();
+}
+
+function splitKeep(s, ch) {
+  const bits = s.split(ch);
+  return bits.map(function (b, i) { return i < bits.length - 1 ? b + ch.trim() : b; })
+             .filter(function (x) { return x.trim(); });
+}
+
+/* Display segmentation: whole sentences, never sub-split. */
+function splitSentences(line) {
+  const rough = line.match(/[^.?!]+[.?!]+["'\u201d\u2019)]*\s*|[^.?!]+$/g) || [line];
+  const out = [];
+  rough.forEach(function (raw) { const t = raw.trim(); if (t) out.push(t); });
+  return out.length ? out : [line];
+}
+
+/* Chrome drops an utterance running much past ~15s, and duration scales with
+   rate, so the ceiling is time-based rather than a fixed character count.
+   Roughly 13.75 chars/sec at rate 1.0; budget 11s for headroom. */
+function maxCharsNow() {
+  return Math.max(110, Math.round(13 * 13.75 * speechRate()));
+}
+function speakPieces(sentence, cap) {
+  if (sentence.length <= cap) return [sentence];
+  var parts = splitKeep(sentence, '; ');
+  if (parts.length === 1) parts = splitKeep(sentence, ', ');
+  /* Anything still over the ceiling has to come apart by words. */
+  const atoms = [];
+  parts.forEach(function (p) {
+    p = p.trim(); if (!p) return;
+    if (p.length <= cap) { atoms.push(p); return; }
+    p.split(' ').forEach(function (w) { if (w) atoms.push(w); });
+  });
+  const out = []; var buf = '';
+  atoms.forEach(function (a) {
+    const merged = (buf ? buf + ' ' : '') + a;
+    if (merged.length > cap && buf) { out.push(buf); buf = a; }
+    else buf = merged;
+  });
+  if (buf) out.push(buf);
+  return out;
+}
+
+/* One segmenter feeds both the DOM spans and the speech queue, so their
+   indices line up by construction rather than by hope. */
+const segCache = new Map();
+function segmentsFor(text) {
+  var v = segCache.get(text);
+  if (v) return v;
+  const paras = [];
+  var k = 0;
+  String(text).split(/\n{2,}/).forEach(function (para) {
+    const t = para.trim(); if (!t) return;
+    const lines = [];
+    t.split('\n').forEach(function (line) {
+      const l = line.trim(); if (!l) return;
+      lines.push(splitSentences(l).map(function (s) {
+        return { i: k++, display: s, spoken: speechText(s) };
+      }));
+    });
+    if (lines.length) {
+      const lastLine = lines[lines.length - 1];
+      lastLine[lastLine.length - 1].endsPara = true;
+      paras.push(lines);
+    }
+  });
+  segCache.set(text, paras);
+  return paras;
+}
+function flatSegments(text) {
+  const out = [];
+  segmentsFor(text).forEach(function (p) {
+    p.forEach(function (l) { l.forEach(function (s) { out.push(s); }); });
+  });
+  return out;
+}
+
+var voices = [];
+var speechToken = 0;
+var speech = { id: null, mode: null, segs: [], idx: 0, playing: false, paused: false, cur: -1 };
+var contPool = [], contPos = 0;
+
+/* Microsoft's "Online (Natural)" and Apple's premium voices are neural and
+   sound far closer to human than the local SAPI set. Rank them first. */
+function isNatural(v) {
+  return /natural|neural|online|premium|enhanced|siri/i.test(v.name);
+}
+function voiceRank(v) {
+  const gb = /en[-_]GB/i.test(v.lang), en = /^en/i.test(v.lang);
+  const nat = isNatural(v), goog = /^google/i.test(v.name);
+  if (nat && gb) return 0;
+  if (nat && en) return 1;
+  if (nat) return 2;
+  if (goog && gb) return 3;
+  if (goog && en) return 4;
+  if (gb) return 5;
+  if (en) return 6;
+  return 7;
+}
+function loadVoices() {
+  if (!TTS) return;
+  const all = speechSynthesis.getVoices() || [];
+  const en = all.filter(function (v) { return /^en/i.test(v.lang); });
+  voices = (en.length ? en : all).slice().sort(function (a, b) {
+    return voiceRank(a) - voiceRank(b) || a.name.localeCompare(b.name);
+  });
+  fillVoiceSelect();
+}
+function fillVoiceSelect() {
+  const sel = document.getElementById('p-voice');
+  if (!sel || !voices.length) return;
+  const cur = lsGet(VOICE_KEY);
+  sel.innerHTML = voices.map(function (v) {
+    const label = esc(v.name) + (isNatural(v) ? ' \u00b7 natural' : '');
+    return '<option value="' + esc(v.voiceURI) + '"' + (v.voiceURI === cur ? ' selected' : '') +
+      '>' + label + '</option>';
+  }).join('');
+}
+function pickVoice() {
+  const want = lsGet(VOICE_KEY);
+  if (want) {
+    const v = voices.find(function (x) { return x.voiceURI === want; });
+    if (v) return v;
+  }
+  return voices[0] || null;
+}
+/* Edge's "Online (Natural)" voices stream from Microsoft's servers, so every
+   speak() is a network fetch. localService is the standard signal; the name
+   check is a fallback for engines that do not set it. */
+function usesNetworkVoice() {
+  const v = pickVoice();
+  if (!v) return false;
+  return v.localService === false || isNatural(v);
+}
+function speechRate() {
+  const r = parseFloat(lsGet(RATE_KEY));
+  return (r >= 0.5 && r <= 2) ? r : 1;
+}
+
+function speakScope() {
+  if (speech.mode === 'quiz') return document.querySelector('.quiz-answer-text');
+  return document.querySelector('#question-list [data-id="' + speech.id + '"] .answer-content');
+}
+function clearSpeaking() {
+  const all = document.querySelectorAll('.s.speaking');
+  for (var n = 0; n < all.length; n++) all[n].classList.remove('speaking');
+}
+function markSpeaking(i, scroll) {
+  clearSpeaking();
+  speech.cur = i;
+  if (i < 0) return;
+  const scope = speakScope();
+  if (!scope) return;
+  const el = scope.querySelector('[data-s="' + i + '"]');
+  if (!el) return;
+  el.classList.add('speaking');
+  if (scroll === false) return;
+  const r = el.getBoundingClientRect();
+  if (r.top < 90 || r.bottom > window.innerHeight - 150) {
+    el.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+}
+/* Re-apply after a render wipes the DOM. No scroll: the user may be typing. */
+function restoreSpeaking() {
+  if (!speech.playing || speech.paused || speech.cur < 0) return;
+  markSpeaking(speech.cur, false);
+}
+
+/* Speech runs back to back without these, which is most of what reads as
+   robotic once the voice itself is decent. */
+const GAP_SENTENCE = 300, GAP_PARA = 650;
+function buildSegs(q, mode) {
+  const segs = [];
+  const cap = maxCharsNow();
+  /* A pause makes a network voice refetch from cold, so silence between
+     sentences becomes an audible stall. Those voices also carry their own
+     sentence-final intonation and do not need the help. */
+  const net = usesNetworkVoice();
+  const gapS = net ? 0 : GAP_SENTENCE, gapP = net ? 0 : GAP_PARA;
+  if (mode !== 'card') {
+    segs.push({ i: -1, spoken: speechText(q.title),
+                gapAfter: mode === 'continuous' ? 1800 : (net ? 0 : 500) });
+  }
+  flatSegments(q.answer).forEach(function (s) {
+    const pieces = speakPieces(s.spoken, cap);
+    pieces.forEach(function (p, n) {
+      const last = n === pieces.length - 1;
+      segs.push({ i: s.i, spoken: p,
+                  gapAfter: last ? (s.endsPara ? gapP : gapS) : 0 });
+    });
+  });
+  return segs;
+}
+
+/* Rate changes the chunk ceiling, so the queue is rebuilt around the
+   sentence currently being spoken. */
+function rebuildSegsKeepingPlace() {
+  const q = questions.find(function (x) { return x.id === speech.id; });
+  if (!q || !speech.segs.length) return;
+  const curSentence = speech.segs[speech.idx] ? speech.segs[speech.idx].i : -1;
+  speech.segs = buildSegs(q, speech.mode);
+  var target = -1;
+  for (var n = 0; n < speech.segs.length; n++) {
+    if (speech.segs[n].i === curSentence) { target = n; break; }
+  }
+  speech.idx = target < 0 ? 0 : target;
+}
+
+/* Speaking one utterance and only building the next on onend meant a network
+   voice did its fetch in dead air, which is heard as a stall every sentence.
+   speechSynthesis keeps its own queue, so handing it several utterances lets
+   it fetch ahead while the current one plays. */
+const LOOKAHEAD = 3;
+var queuedUpTo = -1;      /* highest segment index given to the engine */
+var queueBarrier = 0;     /* never queue past a segment that owes a pause */
+var lastTick = 0;         /* last onstart/onend, for the stall watchdog */
+
+/* A deliberate pause must actually happen, so queueing stops at the first
+   segment carrying one. Network voices have no gaps, so this never binds. */
+function barrierFrom(start) {
+  for (var n = start; n < speech.segs.length; n++) {
+    if (speech.segs[n].gapAfter > 0) return n;
+  }
+  return speech.segs.length - 1;
+}
+
+function speakFrom(i, token) {
+  if (token !== speechToken || !speech.playing || speech.paused) return;
+  if (i >= speech.segs.length) { sequenceEnded(token); return; }
+  speech.idx = i;
+  queuedUpTo = i - 1;
+  queueBarrier = barrierFrom(i);
+  lastTick = Date.now();
+  pump(token);
+}
+
+function pump(token) {
+  if (token !== speechToken || !speech.playing || speech.paused) return;
+  while (queuedUpTo + 1 < speech.segs.length &&
+         queuedUpTo + 1 <= speech.idx + LOOKAHEAD &&
+         queuedUpTo + 1 <= queueBarrier) {
+    enqueue(++queuedUpTo, token);
+  }
+}
+
+function enqueue(n, token) {
+  const seg = speech.segs[n];
+  const u = new SpeechSynthesisUtterance(seg.spoken);
+  const v = pickVoice();
+  if (v) { u.voice = v; u.lang = v.lang; }
+  u.rate = speechRate();
+  /* With several utterances in flight the scheduler no longer tracks what is
+     audible, so the highlight follows onstart. */
+  u.onstart = function () {
+    if (token !== speechToken) return;
+    speech.idx = n;
+    lastTick = Date.now();
+    markSpeaking(seg.i);
+    updatePlayer();
+    pump(token);
+  };
+  u.onend = function () {
+    if (token !== speechToken) return;
+    lastTick = Date.now();
+    if (n >= speech.segs.length - 1) { sequenceEnded(token); return; }
+    if (seg.gapAfter) {
+      setTimeout(function () {
+        if (token !== speechToken) return;
+        queueBarrier = barrierFrom(n + 1);
+        pump(token);
+      }, seg.gapAfter);
+    } else {
+      pump(token);
+    }
+  };
+  u.onerror = function (e) {
+    if (token !== speechToken) return;
+    if (e.error === 'interrupted' || e.error === 'canceled') return;
+    stopSpeech();
+    showToast('Speech stopped: ' + e.error, 4000);
+  };
+  speechSynthesis.speak(u);
+}
+
+/* A streamed utterance can be dropped without firing onend. If nothing is
+   speaking or pending for a few seconds while we believe we are playing,
+   restart from where we are. */
+var watchdog = null;
+function startWatchdog() {
+  stopWatchdog();
+  watchdog = setInterval(function () {
+    if (!speech.playing || speech.paused || usingAudio()) return;
+    if (speechSynthesis.speaking || speechSynthesis.pending) { lastTick = Date.now(); return; }
+    if (Date.now() - lastTick < 3000) return;
+    speakFrom(speech.idx, speechToken);
+  }, 1000);
+}
+function stopWatchdog() { if (watchdog) { clearInterval(watchdog); watchdog = null; } }
+
+function sequenceEnded(token) {
+  if (token !== speechToken) return;
+  if (speech.mode === 'continuous') {
+    clearSpeaking();
+    const next = contPos + 1;
+    setTimeout(function () { if (token === speechToken) playContinuousAt(next); }, 900);
+    return;
+  }
+  stopSpeech();
+}
+
+/* ---------- Pre-rendered audio ----------
+   When audio/ is present the browser plays real files instead of
+   synthesising. That removes chunking, streaming stalls and the
+   watchdog, and makes pause, seek and speed genuine operations. */
+var AUDIO = null;      /* sentence start times per question id, in ms */
+var audioEl = null;
+
+function audioReady(id) { return !!(AUDIO && AUDIO[String(id)]); }
+function usingAudio() { return !!(speech.playing && speech.times); }
+
+function initAudio() {
+  fetch('audio/timings.json')
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (t) { if (t) { AUDIO = t; renderList(); } })
+    .catch(function () { /* no audio alongside the page; synthesis it is */ });
+}
+
+function ensureAudioEl() {
+  if (audioEl) return audioEl;
+  audioEl = new Audio();
+  audioEl.preload = 'auto';
+  audioEl.addEventListener('timeupdate', onAudioTime);
+  audioEl.addEventListener('ended', onAudioEnded);
+  audioEl.addEventListener('error', function () {
+    if (!speech.playing) return;
+    const id = speech.id, mode = speech.mode;
+    AUDIO = null;                       /* fall back for the rest of the session */
+    showToast('Audio file missing, using the browser voice instead.', 4000);
+    playQuestion(id, mode);
+  });
+  return audioEl;
+}
+
+function playAudio(id, mode) {
+  const el = ensureAudioEl();
+  speechToken++;
+  if (TTS) speechSynthesis.cancel();
+  speech = { id: id, mode: mode, segs: [], idx: 0, playing: true, paused: false,
+             cur: -1, times: AUDIO[String(id)], stage: 'answer' };
+  showPlayer();
+  if (mode !== 'quiz') renderList();
+  updatePlayer();
+  /* Hands-free listening needs the question read too; it is a separate clip. */
+  speech.stage = (mode === 'continuous' && AUDIO['t' + id]) ? 'title' : 'answer';
+  el.src = 'audio/' + (speech.stage === 'title' ? 't' + id : id) + '.mp3';
+  el.playbackRate = speechRate();
+  el.play().catch(function () {
+    showToast('Tap play to start audio.', 3000);
+  });
+}
+
+function onAudioTime() {
+  if (!usingAudio() || speech.stage === 'title') return;
+  const ms = audioEl.currentTime * 1000;
+  var at = 0;
+  for (var n = 0; n < speech.times.length; n++) {
+    if (speech.times[n] !== null && speech.times[n] <= ms) at = n; else break;
+  }
+  if (at !== speech.cur) { speech.idx = at; markSpeaking(at); }
+}
+
+function onAudioEnded() {
+  if (!speech.playing) return;
+  if (speech.stage === 'title') {
+    const token = speechToken;
+    speech.stage = 'answer';
+    setTimeout(function () {
+      if (token !== speechToken || !speech.playing) return;
+      audioEl.src = 'audio/' + speech.id + '.mp3';
+      audioEl.playbackRate = speechRate();
+      audioEl.play().catch(function () {});
+    }, 1800);
+    return;
+  }
+  sequenceEnded(speechToken);
+}
+
+function playQuestion(id, mode) {
+  if (audioReady(id)) { playAudio(id, mode); return; }
+  if (!TTS) { showToast('This browser cannot read text aloud.', 4000); return; }
+  const q = questions.find(function (x) { return x.id === id; });
+  if (!q) return;
+  speechToken++;
+  speechSynthesis.cancel();
+  speech = { id: id, mode: mode, segs: buildSegs(q, mode), idx: 0, playing: true, paused: false, cur: -1 };
+  showPlayer();
+  if (mode !== 'quiz') renderList();
+  updatePlayer();
+  const token = speechToken;
+  startWatchdog();
+  /* Chrome needs a beat after cancel() before speak() takes reliably. */
+  setTimeout(function () { speakFrom(0, token); }, 60);
+}
+
+/* Resuming restarts the current sentence. Native pause()/resume() is
+   unreliable across platforms, so we cancel and re-speak instead. */
+function togglePlay() {
+  if (!speech.playing) return;
+  if (usingAudio()) {
+    speech.paused = !speech.paused;
+    if (speech.paused) { audioEl.pause(); clearSpeaking(); } else { audioEl.play().catch(function(){}); }
+    updatePlayer(); renderList();
+    return;
+  }
+  speechToken++;
+  const token = speechToken;
+  if (speech.paused) {
+    speech.paused = false;
+    updatePlayer(); renderList();
+    setTimeout(function () { speakFrom(speech.idx, token); }, 40);
+  } else {
+    speech.paused = true;
+    speechSynthesis.cancel();
+    queuedUpTo = -1;
+    clearSpeaking();
+    updatePlayer(); renderList();
+  }
+}
+
+function jumpSentence(delta) {
+  if (!speech.playing) return;
+  if (speech.mode === 'continuous') { playContinuousAt(contPos + delta); return; }
+  if (usingAudio()) {
+    const t = speech.idx + delta;
+    if (t < 0 || t >= speech.times.length) { stopSpeech(); return; }
+    audioEl.currentTime = (speech.times[t] || 0) / 1000;
+    return;
+  }
+  const target = speech.idx + delta;
+  if (target < 0 || target >= speech.segs.length) { stopSpeech(); return; }
+  speechToken++;
+  const token = speechToken;
+  speech.paused = false;
+  speechSynthesis.cancel();
+  setTimeout(function () { speakFrom(target, token); }, 40);
+}
+
+function stopSpeech() {
+  speechToken++;
+  stopWatchdog();
+  if (audioEl) { audioEl.pause(); audioEl.removeAttribute('src'); }
+  if (TTS) speechSynthesis.cancel();
+  queuedUpTo = -1;
+  const hadId = speech.id;
+  speech = { id: null, mode: null, segs: [], idx: 0, playing: false, paused: false, cur: -1 };
+  contPool = []; contPos = 0;
+  clearSpeaking();
+  hidePlayer();
+  if (hadId !== null) renderList();
+}
+
+function startContinuous() {
+  if (!TTS) { showToast('This browser cannot read text aloud.', 4000); return; }
+  if (quizActive) exitQuiz();
+  const pool = getFiltered();
+  if (!pool.length) { showToast('Nothing to listen to with this filter.'); return; }
+  contPool = pool.map(function (q) { return q.id; });
+  playContinuousAt(0);
+}
+function playContinuousAt(pos) {
+  if (pos < 0) pos = 0;
+  if (pos >= contPool.length) { stopSpeech(); showToast('That is the end of the deck.'); return; }
+  contPos = pos;
+  const id = contPool[pos];
+  expandedIds.add(id);
+  allExpanded = false; updateExpandBtn();
+  renderList();
+  const card = document.querySelector('#question-list [data-id="' + id + '"]');
+  if (card) card.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  playQuestion(id, 'continuous');
+}
+
+function toggleCardPlay(id) {
+  if (speech.playing && speech.id === id && speech.mode !== 'quiz') { togglePlay(); return; }
+  expandedIds.add(id);
+  playQuestion(id, 'card');
+}
+function toggleQuizPlay() {
+  if (speech.playing && speech.mode === 'quiz') { togglePlay(); return; }
+  if (quizCurrentId !== null) playQuestion(quizCurrentId, 'quiz');
+}
+
+function showPlayer() {
+  const p = document.getElementById('player');
+  if (!p) return;
+  p.hidden = false;
+  document.body.classList.add('has-player');
+}
+function hidePlayer() {
+  const p = document.getElementById('player');
+  if (!p) return;
+  p.hidden = true;
+  document.body.classList.remove('has-player');
+}
+function updatePlayer() {
+  const q = questions.find(function (x) { return x.id === speech.id; });
+  const num = document.getElementById('player-num');
+  const title = document.getElementById('player-title');
+  const play = document.getElementById('p-play');
+  if (num) num.textContent = q ? String(q.id).padStart(2, '0') : '';
+  if (title) title.textContent = q ? q.title : '';
+  if (play) {
+    play.innerHTML = icon(speech.paused || !speech.playing ? 'play' : 'pause', 16);
+    play.setAttribute('aria-label', speech.paused ? 'Resume' : 'Pause');
+  }
+}
+
+/* ---------- Render ---------- */
+function render() { renderBanner(); renderCount(); renderList(); }
+
+function renderBanner() {
+  const b = document.getElementById('banner');
+  if (questions.length < TOTAL_EXPECTED) {
+    b.innerHTML = '<div class="banner-inner">' + icon('info', 15) +
+      '<span>' + questions.length + ' of ' + TOTAL_EXPECTED + ' questions loaded. ' +
+      '<a id="banner-import" role="button" tabindex="0">Import</a> the rest, or ' +
+      '<a id="banner-add" role="button" tabindex="0">add them one at a time</a>.</span></div>';
+    document.getElementById('banner-import').onclick = openBackupModal;
+    document.getElementById('banner-add').onclick = openAddModal;
+  } else {
+    b.innerHTML = '';
+  }
+}
+
+function renderCount() {
+  const f = getFiltered();
+  const noun = n => n === 1 ? '1 question' : n + ' questions';
+  document.getElementById('count-label').textContent =
+    (searchQuery || activeTopic !== 'all') ? f.length + ' of ' + noun(questions.length) : noun(questions.length);
+}
+
+function renderList() {
+  const list = document.getElementById('question-list'), filtered = getFiltered();
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-state">' + icon('search', 40) +
+      '<p>No questions match your search or filter.</p></div>';
+    return;
+  }
+  list.innerHTML = filtered.map(q => {
+    const exp = expandedIds.has(q.id);
+    const num = String(q.id).padStart(2, '0');
+    const meta = '<div class="q-meta"><span class="q-topic ' + esc(q.topic) + '">' + esc(topicLabel(q.topic)) + '</span>' +
+      (q.edited ? '<span class="q-edited">edited</span>' : '') + '</div>';
+    const title = '<div class="q-title">' + highlightText(q.title, searchQuery) + '</div>';
+
+    if (editingId === q.id) {
+      return '<article class="q-card editing" data-id="' + q.id + '">' +
+        '<div class="q-header"><span class="q-num">' + num + '</span><div class="q-body">' + meta + title + '</div></div>' +
+        '<div class="edit-wrap"><textarea class="edit-textarea" id="edit-area-' + q.id + '" aria-label="Answer">' + esc(q.answer) + '</textarea>' +
+        '<div class="edit-actions"><button class="btn" onclick="cancelEdit()">Cancel</button>' +
+        '<button class="btn primary" onclick="saveEdit(' + q.id + ')">' + icon('check') + ' Save</button></div></div></article>';
+    }
+    const speaking = speech.playing && speech.id === q.id && speech.mode !== 'quiz';
+    const pIcon = (speaking && !speech.paused) ? 'pause' : 'play';
+    const pWord = (speaking && !speech.paused) ? 'Pause' : (speaking ? 'Resume' : 'Listen');
+    return '<article class="q-card ' + (exp ? 'expanded' : '') + '" data-id="' + q.id + '">' +
+      '<div class="q-header" onclick="toggleExpand(' + q.id + ')" role="button" tabindex="0" aria-expanded="' + exp + '" ' +
+      'onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();toggleExpand(' + q.id + ')}">' +
+      '<span class="q-num">' + num + '</span><div class="q-body">' + meta + title + '</div>' +
+      '<span class="q-chevron">' + icon('chevronDown', 14) + '</span></div>' +
+      '<div class="answer-grid"><div class="answer-inner">' +
+      '<div class="answer-content">' + renderAnswerHTML(q.answer, searchQuery) + '</div>' +
+      '<div class="answer-actions">' +
+      (TTS ? '<button class="btn" onclick="event.stopPropagation();toggleCardPlay(' + q.id + ')">' +
+        icon(pIcon, 14) + ' ' + pWord + '</button>' : '') +
+      '<button class="btn" onclick="event.stopPropagation();startEdit(' + q.id + ')">' +
+      icon('pen', 14) + ' Edit</button>' +
+      '</div></div></div></article>';
+  }).join('');
+  restoreSpeaking();
+}
+
+/* ---------- Expand / edit ---------- */
+function toggleExpand(id) {
+  if (editingId !== null) return;
+  expandedIds.has(id) ? expandedIds.delete(id) : expandedIds.add(id);
+  allExpanded = false; updateExpandBtn(); renderList();
+}
+
+function toggleExpandAll() {
+  const f = getFiltered();
+  if (allExpanded) { f.forEach(q => expandedIds.delete(q.id)); allExpanded = false; }
+  else { f.forEach(q => expandedIds.add(q.id)); allExpanded = true; }
+  updateExpandBtn(); renderList();
+}
+
+function updateExpandBtn() {
+  const btn = document.getElementById('btn-expand-all');
+  btn.innerHTML = icon(allExpanded ? 'chevronsUp' : 'chevronsDown') +
+    '<span class="btn-label">' + (allExpanded ? 'Collapse' : 'Expand') + '</span>';
+  btn.setAttribute('aria-label', allExpanded ? 'Collapse all answers' : 'Expand all answers');
+}
+
+function startEdit(id) {
+  if (speech.playing) stopSpeech();
+  editingId = id; renderList();
+  const ta = document.getElementById('edit-area-' + id);
+  if (ta) { ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); }
+}
+function cancelEdit() { editingId = null; renderList(); }
+function saveEdit(id) {
+  const ta = document.getElementById('edit-area-' + id);
+  if (!ta) return;
+  const v = ta.value.trim();
+  if (!v) { showToast('An answer cannot be empty.'); return; }
+  const q = questions.find(x => x.id === id);
+  if (q) {
+    const o = DEFAULT_QUESTIONS.find(d => d.id === id);
+    q.answer = v; q.edited = o ? v !== o.answer : true;
+    saveQuestions(); editingId = null; render(); showToast('Answer saved');
+  }
+}
+
+/* ---------- Search / filter ---------- */
+let searchTimeout;
+function handleSearch(e) {
+  clearTimeout(searchTimeout);
+  const v = e.target.value;
+  searchTimeout = setTimeout(() => { searchQuery = v.trim(); render(); }, 250);
+}
+function handleTopicFilter(e) {
+  const c = e.target.closest('.chip');
+  if (!c) return;
+  document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
+  c.classList.add('active'); activeTopic = c.dataset.topic; render();
+}
+
+/* ---------- Add ---------- */
+function openAddModal() {
+  document.getElementById('add-modal').classList.add('active');
+  document.getElementById('add-title').value = '';
+  document.getElementById('add-answer').value = '';
+  document.getElementById('add-title').focus();
+}
+function closeAddModal() { document.getElementById('add-modal').classList.remove('active'); }
+function saveNewQuestion() {
+  const topic = document.getElementById('add-topic').value;
+  const title = document.getElementById('add-title').value.trim();
+  const answer = document.getElementById('add-answer').value.trim();
+  if (!title) { showToast('Add a question before saving.'); return; }
+  if (!answer) { showToast('Add an answer before saving.'); return; }
+  let nid = Math.max(...questions.map(q => q.id), 0) + 1;
+  while (DEFAULT_QUESTIONS.some(d => d.id === nid)) nid++;
+  questions.push({ id: nid, topic, title, answer, edited: true });
+  questions.sort((a, b) => a.id - b.id);
+  saveQuestions(); closeAddModal(); render(); showToast('Question added');
+}
+
+/* ---------- Backup / restore ---------- */
+function currentJSON() {
+  return JSON.stringify(questions.map(q => ({ id: q.id, topic: q.topic, title: q.title, answer: q.answer })), null, 2);
+}
+function openBackupModal() {
+  document.getElementById('backup-area').value = currentJSON();
+  document.getElementById('backup-modal').classList.add('active');
+}
+function closeBackupModal() { document.getElementById('backup-modal').classList.remove('active'); }
+
+function copyJSON() {
+  const ta = document.getElementById('backup-area');
+  const n = questions.length;
+  const done = () => showToast('Copied ' + (n === 1 ? '1 question' : n + ' questions') + ' to the clipboard');
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(done, selectForManualCopy);
+  } else {
+    selectForManualCopy();
+  }
+}
+function selectForManualCopy() {
+  const ta = document.getElementById('backup-area');
+  ta.focus(); ta.select();
+  showToast('The clipboard is blocked here. The JSON is selected, so press Ctrl+C or Cmd+C.', 5000);
+}
+
+function mergeQuestions(data) {
+  if (!Array.isArray(data)) throw new Error('the file needs to be a JSON array');
+  if (!data.every(q => q.id !== undefined && q.title && q.answer)) {
+    throw new Error('every entry needs an id, a title and an answer');
+  }
+  const existing = new Map(questions.map(q => [q.id, q]));
+  let updated = 0, added = 0;
+  data.forEach(iq => {
+    if (existing.has(iq.id)) {
+      const ex = existing.get(iq.id);
+      ex.answer = iq.answer; ex.topic = iq.topic || ex.topic; ex.title = iq.title || ex.title;
+      const orig = DEFAULT_QUESTIONS.find(d => d.id === iq.id);
+      ex.edited = orig ? iq.answer !== orig.answer : true;
+      updated++;
+    } else {
+      questions.push({ ...iq, edited: true });
+      added++;
+    }
+  });
+  questions.sort((a, b) => a.id - b.id);
+  saveQuestions(); render();
+  showToast('Imported ' + added + ' new and updated ' + updated);
+}
+
+function parseLoose(raw) {
+  raw = raw.replace(/^﻿/, '');
+  const closeIdx = raw.lastIndexOf(']');
+  if (closeIdx !== -1) raw = raw.substring(0, closeIdx + 1);
+  raw = raw.replace(/,\s*([}\]])/g, '$1').trim();
+  return JSON.parse(raw);
+}
+
+function importFromBox() {
+  const raw = document.getElementById('backup-area').value;
+  if (!raw.trim()) { showToast('Paste a backup into the box first.'); return; }
+  try {
+    mergeQuestions(parseLoose(raw));
+    closeBackupModal();
+  } catch (err) {
+    showToast('That did not import: ' + err.message, 5000);
+  }
+}
+
+function importJSON(file) {
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      mergeQuestions(parseLoose(e.target.result));
+      closeBackupModal();
+    } catch (err) {
+      showToast('That did not import: ' + err.message, 5000);
+    }
+  };
+  reader.onerror = () => showToast('That file could not be read.');
+  reader.readAsText(file);
+}
+
+/* ---------- Quiz ---------- */
+function startQuiz() {
+  const pool = getFiltered();
+  if (!pool.length) { showToast('Nothing to quiz on with this filter.'); return; }
+  quizActive = true; quizSeen = new Set(); quizRevealed = false;
+  document.getElementById('quiz-overlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  nextQuizQuestion();
+}
+function exitQuiz() {
+  if (speech.playing) stopSpeech();
+  quizActive = false; quizRevealed = false;
+  quizCurrentId = null;
+  document.getElementById('quiz-overlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+function nextQuizQuestion() {
+  const pool = getFiltered(), unseen = pool.filter(q => !quizSeen.has(q.id));
+  if (!unseen.length) {
+    document.getElementById('quiz-body').innerHTML =
+      '<div class="quiz-done">' + icon('checkCircle', 40) +
+      '<span>All ' + pool.length + ' reviewed</span></div>' +
+      '<div class="quiz-actions"><button class="btn" onclick="exitQuiz()">' + icon('x') + ' Exit</button>' +
+      '<button class="btn primary" onclick="quizSeen.clear();nextQuizQuestion()">Start over</button></div>';
+    document.getElementById('quiz-counter').textContent = pool.length + ' / ' + pool.length;
+    return;
+  }
+  const q = unseen[Math.floor(Math.random() * unseen.length)];
+  quizSeen.add(q.id); quizRevealed = false; quizCurrentId = q.id;
+  if (speech.playing) stopSpeech();
+  document.getElementById('quiz-counter').textContent = quizSeen.size + ' / ' + pool.length;
+  document.getElementById('quiz-body').innerHTML =
+    '<span class="quiz-topic-tag ' + esc(q.topic) + '">' + esc(topicLabel(q.topic)) + '</span>' +
+    '<div class="quiz-question">' + esc(q.title) + '</div>' +
+    '<div class="quiz-answer-wrap" id="quiz-answer-wrap"><div class="quiz-answer-inner">' +
+    '<div class="quiz-answer-text">' + renderAnswerHTML(q.answer) + '</div></div></div>' +
+    '<div class="quiz-actions" id="quiz-actions">' +
+    '<button class="btn primary" onclick="revealQuizAnswer()">' + icon('eye') + ' Reveal answer</button>' +
+    '<button class="btn" onclick="nextQuizQuestion()">' + icon('skip') + ' Skip</button></div>';
+}
+function revealQuizAnswer() {
+  quizRevealed = true;
+  const w = document.getElementById('quiz-answer-wrap');
+  if (w) w.classList.add('revealed');
+  const a = document.getElementById('quiz-actions');
+  if (a) a.innerHTML =
+    '<button class="btn primary" onclick="nextQuizQuestion()">' + icon('arrowRight') + ' Next question</button>' +
+    (TTS ? '<button class="btn" onclick="toggleQuizPlay()">' + icon('play') + ' Listen</button>' : '') +
+    '<button class="btn" onclick="exitQuiz()">' + icon('x') + ' Exit</button>';
+}
+
+/* ---------- Wiring ---------- */
+document.getElementById('btn-add').innerHTML = icon('plus') + '<span class="btn-label">Add</span>';
+document.getElementById('btn-backup').innerHTML = icon('archive') + '<span class="btn-label">Backup</span>';
+document.getElementById('btn-quiz').innerHTML = icon('shuffle') + '<span class="btn-label">Quiz</span>';
+document.querySelector('.search-wrap').insertAdjacentHTML('afterbegin', icon('search', 15));
+
+document.getElementById('search-input').addEventListener('input', handleSearch);
+document.querySelector('.filters-row').addEventListener('click', handleTopicFilter);
+document.getElementById('btn-dark').addEventListener('click', toggleTheme);
+document.getElementById('btn-expand-all').addEventListener('click', toggleExpandAll);
+document.getElementById('btn-add').addEventListener('click', openAddModal);
+document.getElementById('btn-quiz').addEventListener('click', startQuiz);
+document.getElementById('quiz-close').addEventListener('click', exitQuiz);
+document.getElementById('quiz-close').innerHTML = icon('x', 14) + ' Exit';
+
+document.getElementById('add-cancel').addEventListener('click', closeAddModal);
+document.getElementById('add-save').addEventListener('click', saveNewQuestion);
+document.getElementById('add-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeAddModal(); });
+
+document.getElementById('btn-backup').addEventListener('click', openBackupModal);
+document.getElementById('backup-close').addEventListener('click', closeBackupModal);
+document.getElementById('backup-copy').addEventListener('click', copyJSON);
+document.getElementById('backup-import').addEventListener('click', importFromBox);
+document.getElementById('backup-file').addEventListener('click', () => document.getElementById('file-input').click());
+document.getElementById('backup-modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeBackupModal(); });
+document.getElementById('file-input').addEventListener('change', e => {
+  if (e.target.files[0]) importJSON(e.target.files[0]);
+  e.target.value = '';
+});
+
+/* Drop a backup file anywhere on the page. */
+document.addEventListener('dragover', e => { e.preventDefault(); });
+document.addEventListener('drop', e => {
+  e.preventDefault();
+  const file = e.dataTransfer && e.dataTransfer.files[0];
+  if (file) importJSON(file);
+});
+
+document.addEventListener('keydown', e => {
+  const tag = e.target.tagName;
+  if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT') {
+    if (e.key === 'Escape') {
+      if (editingId !== null) cancelEdit();
+      else if (document.getElementById('add-modal').classList.contains('active')) closeAddModal();
+      else if (document.getElementById('backup-modal').classList.contains('active')) closeBackupModal();
+      else e.target.blur();
+    }
+    return;
+  }
+  if (e.key === '/') { e.preventDefault(); document.getElementById('search-input').focus(); }
+  if (e.key === 'Escape') {
+    if (speech.playing) stopSpeech();
+    if (quizActive) exitQuiz();
+    else if (document.getElementById('add-modal').classList.contains('active')) closeAddModal();
+    else if (document.getElementById('backup-modal').classList.contains('active')) closeBackupModal();
+  }
+  if (quizActive && e.key === 'n' && quizRevealed) nextQuizQuestion();
+  if (e.key === 'p') { e.preventDefault(); if (speech.playing) togglePlay(); else if (quizActive) toggleQuizPlay(); }
+  if (e.key === 's' && speech.playing) { e.preventDefault(); stopSpeech(); }
+});
+
+/* ---------- Speech wiring ---------- */
+document.getElementById('btn-listen').innerHTML = icon('headphones') + '<span class="btn-label">Listen</span>';
+document.getElementById('p-prev').innerHTML = icon('prev', 15);
+document.getElementById('p-next').innerHTML = icon('next', 15);
+document.getElementById('p-close').innerHTML = icon('x', 15);
+document.getElementById('p-play').innerHTML = icon('pause', 16);
+
+document.getElementById('btn-listen').addEventListener('click', startContinuous);
+document.getElementById('p-play').addEventListener('click', togglePlay);
+document.getElementById('p-prev').addEventListener('click', function () { jumpSentence(-1); });
+document.getElementById('p-next').addEventListener('click', function () { jumpSentence(1); });
+document.getElementById('p-close').addEventListener('click', stopSpeech);
+
+const rateInput = document.getElementById('p-rate');
+function showRate() {
+  document.getElementById('rate-label').textContent = Number(rateInput.value).toFixed(2).replace(/0$/, '') + 'x';
+}
+rateInput.value = String(speechRate());
+showRate();
+rateInput.addEventListener('input', function () {
+  lsSet(RATE_KEY, rateInput.value);
+  showRate();
+  /* Rate applies only to a new utterance, and changes the chunk ceiling. */
+  if (usingAudio()) { audioEl.playbackRate = speechRate(); return; }
+  if (speech.playing && !speech.paused) {
+    speechToken++;
+    const token = speechToken;
+    speechSynthesis.cancel();
+    rebuildSegsKeepingPlace();
+    setTimeout(function () { speakFrom(speech.idx, token); }, 140);
+  }
+});
+
+document.getElementById('p-voice').addEventListener('change', function (e) {
+  lsSet(VOICE_KEY, e.target.value);
+  if (speech.playing && !speech.paused) {
+    speechToken++;
+    const token = speechToken;
+    speechSynthesis.cancel();
+    setTimeout(function () { speakFrom(speech.idx, token); }, 120);
+  }
+});
+
+/* getVoices() is empty on the first call in Chrome. */
+if (TTS) {
+  loadVoices();
+  speechSynthesis.addEventListener('voiceschanged', loadVoices);
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden && speech.playing) stopSpeech();
+  });
+  window.addEventListener('beforeunload', function () { speechSynthesis.cancel(); });
+}
+initAudio();
+
+loadTheme();
+updateExpandBtn();
+loadQuestions();
+render();
+</script>
+
+</html>
