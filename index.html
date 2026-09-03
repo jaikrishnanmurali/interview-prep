@@ -354,11 +354,13 @@
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 250;
     background: var(--card); border-top: 1px solid var(--border);
     box-shadow: 0 -4px 24px var(--shadow);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .player[hidden] { display: none !important; }
   .player-inner {
-    max-width: var(--w, 1240px); margin: 0 auto; padding: 10px 24px;
-    display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+    max-width: var(--w, 1240px); margin: 0 auto; padding: 11px 24px 13px;
+    display: flex; align-items: center; flex-wrap: wrap;
+    column-gap: 16px; row-gap: 9px;   /* the wrapped seek row needs its own rhythm */
   }
   .player-now { flex: 1 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 8px; }
   .player-num {
@@ -384,7 +386,6 @@
   .player-inner { flex-wrap: wrap; }
   .player-seek {
     flex: 1 1 100%; order: 3; display: flex; align-items: center; gap: 12px;
-    margin-top: 2px;
   }
   .player-seek[hidden] { display: none !important; }
   .ptime {
@@ -405,6 +406,8 @@
     cursor: pointer; border: 0;
   }
   #p-seek:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  #p-seek:disabled { cursor: default; opacity: 0.55; }
+  #p-seek:disabled::-webkit-slider-thumb { background: var(--fg2); }
   .player-rate { display: flex; align-items: center; gap: 7px; font-size: 0.75rem; color: var(--fg2); }
   .player-rate span { font-variant-numeric: tabular-nums; min-width: 32px; }
   .player-rate input { width: 78px; accent-color: var(--accent); cursor: pointer; }
@@ -572,7 +575,6 @@
       </label>
       <select id="p-voice" aria-label="Voice"></select>
       <button class="pbtn" id="p-close" aria-label="Stop"></button>
-    </div>
     </div>
     <div class="player-seek" id="player-seek">
       <span class="ptime" id="p-cur">0:00</span>
@@ -1112,6 +1114,7 @@ function enqueue(n, token) {
     lastTick = Date.now();
     markSpeaking(seg.i);
     updatePlayer();
+    syncSeek();
     pump(token);
   };
   u.onend = function () {
@@ -1228,8 +1231,9 @@ function ensureAudioEl() {
   audioEl.addEventListener('timeupdate', onAudioTime);
   audioEl.addEventListener('loadedmetadata', function () {
     const s = document.getElementById('player-seek');
-    if (s) s.hidden = !usingAudio();
+    if (s) s.hidden = false;
     syncSeek();
+    updateMediaSession();
   });
   audioEl.addEventListener('ended', onAudioEnded);
   audioEl.addEventListener('error', function () {
@@ -1264,11 +1268,21 @@ var seeking = false;
 function syncSeek() {
   const bar = document.getElementById('p-seek');
   const cur = document.getElementById('p-cur'), dur = document.getElementById('p-dur');
-  if (!bar || !audioEl) return;
-  const d = audioEl.duration;
-  if (cur) cur.textContent = fmtTime(audioEl.currentTime);
-  if (dur) dur.textContent = isFinite(d) ? fmtTime(d) : '0:00';
-  if (!seeking && isFinite(d) && d > 0) bar.value = String(Math.round(audioEl.currentTime / d * 1000));
+  if (!bar) return;
+  if (usingAudio() && audioEl) {
+    bar.disabled = false;
+    const d = audioEl.duration;
+    if (cur) cur.textContent = fmtTime(audioEl.currentTime);
+    if (dur) dur.textContent = isFinite(d) ? fmtTime(d) : '0:00';
+    if (!seeking && isFinite(d) && d > 0) bar.value = String(Math.round(audioEl.currentTime / d * 1000));
+    return;
+  }
+  /* Synthesised speech: show how far through the answer we are instead. */
+  const n = speech.segs.length;
+  bar.disabled = true;
+  bar.value = String(n ? Math.round((speech.idx + 1) / n * 1000) : 0);
+  if (cur) cur.textContent = n ? 'line ' + (speech.idx + 1) : '';
+  if (dur) dur.textContent = n ? 'of ' + n : '';
 }
 
 function onAudioTime() {
@@ -1416,7 +1430,7 @@ function showPlayer() {
   if (!p) return;
   p.hidden = false;
   const s = document.getElementById('player-seek');
-  if (s) s.hidden = !usingAudio();
+  if (s) s.hidden = false;
   syncSeek();
   document.body.classList.add('has-player');
 }
@@ -1426,6 +1440,50 @@ function hidePlayer() {
   p.hidden = true;
   document.body.classList.remove('has-player');
 }
+/* Puts the title and transport on the iOS lock screen and in the Android
+   notification shade, which is also what keeps playback alive in the
+   background rather than being treated as an incidental page sound. */
+function updateMediaSession() {
+  if (!('mediaSession' in navigator)) return;
+  const q = questions.find(function (x) { return x.id === speech.id; });
+  const title = speech.label || (q ? q.title : 'Interview prep');
+  try {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: title,
+      artist: speech.mode === 'brief' ? 'Thesis briefing' : 'Interview answer',
+      album: "Jai's interview prep"
+    });
+    navigator.mediaSession.playbackState = !speech.playing ? 'none' : (speech.paused ? 'paused' : 'playing');
+    if (audioEl && isFinite(audioEl.duration) && audioEl.duration > 0) {
+      navigator.mediaSession.setPositionState({
+        duration: audioEl.duration,
+        playbackRate: audioEl.playbackRate || 1,
+        position: Math.min(audioEl.currentTime, audioEl.duration)
+      });
+    }
+  } catch (e) { /* older WebKit rejects some of this; controls still appear */ }
+}
+
+function initMediaSession() {
+  if (!('mediaSession' in navigator)) return;
+  const set = function (name, fn) {
+    try { navigator.mediaSession.setActionHandler(name, fn); } catch (e) {}
+  };
+  set('play', function () { if (speech.playing && speech.paused) togglePlay(); });
+  set('pause', function () { if (speech.playing && !speech.paused) togglePlay(); });
+  set('stop', function () { stopSpeech(); });
+  set('seekbackward', function () { jumpSentence(-1); });
+  set('seekforward', function () { jumpSentence(1); });
+  set('seekto', function (e) {
+    if (audioEl && e && e.seekTime != null && isFinite(audioEl.duration)) {
+      audioEl.currentTime = e.seekTime;
+      syncSeek();
+    }
+  });
+  set('previoustrack', function () { jumpSentence(-1); });
+  set('nexttrack', function () { jumpSentence(1); });
+}
+
 function updatePlayer() {
   const q = questions.find(function (x) { return x.id === speech.id; });
   const num = document.getElementById('player-num');
@@ -1437,6 +1495,7 @@ function updatePlayer() {
     play.innerHTML = icon(speech.paused || !speech.playing ? 'play' : 'pause', 16);
     play.setAttribute('aria-label', speech.paused ? 'Resume' : 'Pause');
   }
+  updateMediaSession();
 }
 
 /* ---------- Cue card ----------
@@ -1905,12 +1964,16 @@ if (TTS) {
   loadVoices();
   speechSynthesis.addEventListener('voiceschanged', loadVoices);
   document.addEventListener('visibilitychange', function () {
-    if (document.hidden && speech.playing) stopSpeech();
+    /* A background tab suspends speech synthesis, so stop that cleanly.
+       A real audio file must keep going: continuing through a locked
+       screen is the entire point of having the files. */
+    if (document.hidden && speech.playing && !usingAudio()) stopSpeech();
   });
   window.addEventListener('beforeunload', function () { speechSynthesis.cancel(); });
 }
 initAudio();
 
+initMediaSession();
 loadTheme();
 updateExpandBtn();
 loadQuestions();
