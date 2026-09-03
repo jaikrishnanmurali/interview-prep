@@ -12,6 +12,7 @@
 
   /* 1. Light palette — the complete token set. */
   :root {
+    --w: 1240px;
     --bg: #FAF9F6; --bg2: #F0EDE8; --fg: #1A1A1A; --fg2: #6B6560;
     --accent: #B45309; --accent-hover: #92400E; --accent-light: #FEF3C7;
     --card: #FFFFFF; --border: #E5E0D8; --shadow: rgba(0,0,0,0.06);
@@ -104,7 +105,7 @@
     -webkit-backdrop-filter: blur(16px); transition: background 0.35s, border-color 0.35s;
   }
   .header-inner {
-    max-width: 860px; margin: 0 auto; padding: 14px 24px;
+    max-width: var(--w, 1240px); margin: 0 auto; padding: 14px 24px;
     display: flex; align-items: center; justify-content: space-between; gap: 12px;
   }
   .logo {
@@ -126,7 +127,7 @@
   .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); color: #fff; }
   .btn.icon-only { padding: 7px 9px; }
 
-  .toolbar { max-width: 860px; margin: 0 auto; padding: 16px 24px 0; }
+  .toolbar { max-width: var(--w, 1240px); margin: 0 auto; padding: 16px 24px 0; }
   .search-wrap { position: relative; margin-bottom: 14px; }
   .search-wrap > .ic { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--fg2); pointer-events: none; }
   .search-wrap input {
@@ -144,16 +145,16 @@
   }
   .filters-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 6px; }
   .chip {
-    padding: 5px 13px; border-radius: 20px; border: 1px solid var(--border);
+    padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
     background: transparent; color: var(--fg2); font-family: inherit;
-    font-size: 0.78rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+    font-size: 0.84rem; font-weight: 500; cursor: pointer; transition: all 0.2s; white-space: nowrap;
   }
   .chip:hover { border-color: var(--fg2); }
   .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .chip.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
   .count-label { margin-left: auto; font-size: 0.78rem; color: var(--fg2); white-space: nowrap; font-variant-numeric: tabular-nums; }
 
-  .banner { max-width: 860px; margin: 12px auto 0; padding: 0 24px; }
+  .banner { max-width: var(--w, 1240px); margin: 12px auto 0; padding: 0 24px; }
   .banner-inner {
     padding: 10px 16px; border-radius: 8px; font-size: 0.8rem;
     background: var(--accent-light); color: var(--accent);
@@ -161,16 +162,39 @@
   }
   .banner-inner a { color: var(--accent); text-decoration: underline; cursor: pointer; font-weight: 600; }
 
-  .question-list { max-width: 860px; margin: 0 auto; padding: 16px 24px 80px; display: flex; flex-direction: column; gap: 10px; }
+  .briefs { max-width: var(--w, 1240px); margin: 18px auto 0; padding: 0 24px; }
+  .briefs-inner {
+    border: 1px solid var(--border); border-radius: 12px; background: var(--card);
+    padding: 16px 20px; display: flex; flex-direction: column; gap: 12px;
+  }
+  .briefs-head { display: flex; align-items: baseline; gap: 10px; }
+  .briefs-head h2 {
+    font-family: 'Fraunces', Georgia, serif; font-size: 1rem; font-weight: 600; color: var(--fg);
+  }
+  .briefs-note { font-size: 0.76rem; color: var(--fg2); }
+  .briefs-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; }
+  .brief {
+    display: flex; align-items: center; gap: 12px; text-align: left;
+    padding: 12px 14px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--bg); color: var(--fg); font-family: inherit; cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .brief:hover { border-color: var(--accent); }
+  .brief:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .brief.playing { border-color: var(--accent); background: var(--accent-light); }
+  .brief-ic { color: var(--accent); flex-shrink: 0; }
+  .brief-t { flex: 1; min-width: 0; font-size: 0.88rem; font-weight: 500; line-height: 1.35; }
+  .brief-d { font-size: 0.74rem; color: var(--fg2); font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .question-list { max-width: var(--w, 1240px); margin: 0 auto; padding: 16px 24px 80px; display: flex; flex-direction: column; gap: 10px; }
   .q-card { border: 1px solid var(--border); border-radius: 10px; background: var(--card); transition: border-color 0.25s, box-shadow 0.25s; overflow: hidden; }
   .q-card:hover { box-shadow: 0 2px 12px var(--shadow); }
   .q-card.expanded { border-color: var(--accent); box-shadow: 0 2px 16px var(--shadow); }
   .q-card.editing { border-color: var(--accent); box-shadow: 0 0 0 3px var(--focus-ring); }
-  .q-header { display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; cursor: pointer; user-select: none; }
+  .q-header { display: flex; align-items: flex-start; gap: 16px; padding: 18px 22px; cursor: pointer; user-select: none; }
   .q-header:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
   .q-num {
-    font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 0.85rem;
-    color: var(--fg2); min-width: 28px; padding-top: 2px; opacity: 0.6; font-variant-numeric: tabular-nums;
+    font-family: 'Fraunces', Georgia, serif; font-weight: 600; font-size: 1rem;
+    color: var(--accent); min-width: 30px; padding-top: 1px; opacity: 0.75; font-variant-numeric: tabular-nums;
   }
   .q-body { flex: 1; min-width: 0; }
   .q-meta { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; flex-wrap: wrap; }
@@ -190,8 +214,14 @@
   .q-topic.personal,         .quiz-topic-tag.personal         { background: #1E40AF; }
   .q-topic.practical,        .quiz-topic-tag.practical        { background: #065F46; }
 
+  .q-len {
+    font-size: 0.72rem; color: var(--fg2); font-variant-numeric: tabular-nums;
+    opacity: 0.8; white-space: nowrap;
+  }
+  .chip-n { opacity: 0.55; font-variant-numeric: tabular-nums; margin-left: 5px; }
+  .chip.active .chip-n { opacity: 0.7; }
   .q-edited { font-size: 0.65rem; color: var(--fg2); font-style: italic; opacity: 0.7; }
-  .q-title { font-weight: 600; font-size: 0.95rem; line-height: 1.45; color: var(--fg); text-wrap: balance; }
+  .q-title { font-weight: 600; font-size: 1.1rem; line-height: 1.45; color: var(--fg); text-wrap: balance; }
   .q-title mark { background: var(--mark-bg); color: var(--mark-fg); border-radius: 2px; padding: 0 2px; }
   .q-chevron { color: var(--fg2); padding-top: 4px; transition: transform 0.3s; flex-shrink: 0; }
   .q-card.expanded .q-chevron { transform: rotate(180deg); }
@@ -199,16 +229,18 @@
   .answer-grid { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.35s ease; }
   .q-card.expanded .answer-grid { grid-template-rows: 1fr; }
   .answer-inner { overflow: hidden; }
-  .answer-content { padding: 0 18px 16px 58px; font-size: 0.88rem; line-height: 1.7; color: var(--fg2); max-width: 68ch; }
+  .answer-content { padding: 0; font-size: 1rem; line-height: 1.75; color: var(--fg2); max-width: 68ch; }
   .answer-content p { margin-bottom: 0.75em; }
   .answer-content p:last-child { margin-bottom: 0; }
   .answer-content mark { background: var(--mark-bg); color: var(--mark-fg); border-radius: 2px; padding: 0 2px; }
   .answer-split {
-    display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
-    gap: 24px; padding: 0 18px 16px 58px; align-items: start;
+    display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr);
+    gap: 44px; padding: 0 22px 20px 68px; align-items: start;
   }
-  .answer-split .answer-content { padding: 0; max-width: none; }
-  .cue-card { border-left: 1px solid var(--border); padding-left: 20px; }
+  .cue-card {
+    border-left: 1px solid var(--border); padding-left: 24px;
+    position: sticky; top: 96px;          /* holds its place through a long answer */
+  }
   .cue-head {
     display: flex; align-items: baseline; gap: 8px; margin-bottom: 11px;
     font-size: 0.64rem; font-weight: 600; text-transform: uppercase;
@@ -216,7 +248,7 @@
   }
   .cue-time { margin-left: auto; text-transform: none; letter-spacing: 0; font-weight: 500; opacity: 0.75; }
   .cue-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .cue-list li { position: relative; padding-left: 15px; font-size: 0.82rem; line-height: 1.5; color: var(--fg); }
+  .cue-list li { position: relative; padding-left: 16px; font-size: 0.95rem; line-height: 1.55; color: var(--fg); }
   .cue-list li::before {
     content: ''; position: absolute; left: 0; top: 0.52em;
     width: 5px; height: 5px; border-radius: 50%; background: var(--accent);
@@ -226,7 +258,7 @@
     .answer-split { grid-template-columns: 1fr; gap: 18px; }
     .cue-card { border-left: 0; border-top: 1px solid var(--border); padding-left: 0; padding-top: 15px; }
   }
-  .answer-actions { display: flex; gap: 8px; padding: 10px 18px 14px 58px; }
+  .answer-actions { display: flex; gap: 8px; padding: 4px 22px 18px 68px; }
   .answer-actions .btn { font-size: 0.78rem; padding: 5px 12px; }
 
   .edit-wrap { padding: 0 18px 18px 58px; }
@@ -325,7 +357,7 @@
   }
   .player[hidden] { display: none !important; }
   .player-inner {
-    max-width: 860px; margin: 0 auto; padding: 10px 24px;
+    max-width: var(--w, 1240px); margin: 0 auto; padding: 10px 24px;
     display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
   }
   .player-now { flex: 1 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 8px; }
@@ -376,7 +408,9 @@
     .q-header { padding: 14px; gap: 10px; }
     .q-num { min-width: 24px; font-size: 0.8rem; }
     .q-title { font-size: 0.88rem; }
-    .answer-split { padding: 0 14px 14px 44px; }
+    .answer-split { padding: 0 14px 14px 44px; gap: 18px; }
+    .cue-card { position: static; }
+    .briefs { padding: 0 16px; }
     .answer-actions { padding: 8px 14px 12px 44px; }
     .edit-wrap { padding: 0 14px 14px 44px; }
     .quiz-question { font-size: 1.25rem; }
@@ -434,6 +468,8 @@
 </div>
 
 <div class="banner" id="banner"></div>
+
+<div class="briefs" id="briefs" hidden></div>
 
 <main class="question-list" id="question-list"></main>
 
@@ -722,6 +758,13 @@ function renderAnswerHTML(text, q) {
     }).join('<br>') + '</p>';
   }).join('');
 }
+/* Speaking pace, not reading pace: these are answers you say out loud. */
+function speakMins(text) {
+  const w = String(text).trim().split(/\s+/).length;
+  const s = Math.round(w / 150 * 60);
+  return s < 60 ? s + 's' : Math.floor(s / 60) + 'm' + (s % 60 ? ' ' + (s % 60) + 's' : '');
+}
+
 function topicLabel(t) {
   return {
     behavioral: 'Behavioral', 'phd-application': 'PhD Application', circularity: 'Circularity',
@@ -1100,10 +1143,51 @@ var audioEl = null;
 function audioReady(id) { return !!(AUDIO && AUDIO[String(id)]); }
 function usingAudio() { return !!(speech.playing && speech.times); }
 
+/* Long-form deep dives on the thesis, generated with Gemini. They sit apart
+   from the question bank because they are background listening, not answers. */
+const BRIEFS = [
+  { file: 'brief-old-flaws.m4a',     title: 'Why your new product has old flaws',        dur: '49 min' },
+  { file: 'brief-never-reaches.m4a', title: 'Why circular data never reaches engineers', dur: '22 min' },
+  { file: 'brief-fails-design.m4a',  title: 'Why circular data fails design teams',      dur: '20 min' }
+];
+
+function renderBriefs() {
+  const box = document.getElementById('briefs');
+  if (!box) return;
+  /* Only where the audio folder is actually served. */
+  if (!AUDIO) { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = '<div class="briefs-inner">' +
+    '<div class="briefs-head"><h2>Thesis briefings</h2>' +
+    '<span class="briefs-note">Long-form background on the thesis. Generated with Gemini.</span></div>' +
+    '<div class="briefs-list">' + BRIEFS.map(function (b, i) {
+      const on = speech.playing && speech.mode === 'brief' && speech.brief === i;
+      return '<button class="brief' + (on ? ' playing' : '') + '" onclick="toggleBrief(' + i + ')">' +
+        '<span class="brief-ic">' + icon(on && !speech.paused ? 'pause' : 'play', 17) + '</span>' +
+        '<span class="brief-t">' + esc(b.title) + '</span>' +
+        '<span class="brief-d">' + b.dur + '</span></button>';
+    }).join('') + '</div></div>';
+}
+
+function toggleBrief(i) {
+  if (speech.playing && speech.mode === 'brief' && speech.brief === i) { togglePlay(); renderBriefs(); return; }
+  const b = BRIEFS[i];
+  const el = ensureAudioEl();
+  speechToken++;
+  if (TTS) speechSynthesis.cancel();
+  clearSpeaking();
+  speech = { id: null, mode: 'brief', segs: [], idx: 0, playing: true, paused: false,
+             cur: -1, times: [0], stage: 'answer', brief: i, label: b.title };
+  showPlayer(); updatePlayer(); renderList(); renderBriefs();
+  el.src = 'audio/' + b.file;
+  el.playbackRate = speechRate();
+  el.play().catch(function () {});
+}
+
 function initAudio() {
   fetch('audio/timings.json')
     .then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (t) { if (t) { AUDIO = t; renderList(); } })
+    .then(function (t) { if (t) { AUDIO = t; renderList(); renderBriefs(); } })
     .catch(function () { /* no audio alongside the page; synthesis it is */ });
 }
 
@@ -1191,7 +1275,7 @@ function togglePlay() {
   if (usingAudio()) {
     speech.paused = !speech.paused;
     if (speech.paused) { audioEl.pause(); clearSpeaking(); } else { audioEl.play().catch(function(){}); }
-    updatePlayer(); renderList();
+    updatePlayer(); renderList(); renderBriefs();
     return;
   }
   speechToken++;
@@ -1238,7 +1322,7 @@ function stopSpeech() {
   contPool = []; contPos = 0;
   clearSpeaking();
   hidePlayer();
-  if (hadId !== null) renderList();
+  renderList(); renderBriefs();
 }
 
 function startContinuous() {
@@ -1289,8 +1373,8 @@ function updatePlayer() {
   const num = document.getElementById('player-num');
   const title = document.getElementById('player-title');
   const play = document.getElementById('p-play');
-  if (num) num.textContent = q ? String(q.id).padStart(2, '0') : '';
-  if (title) title.textContent = q ? q.title : '';
+  if (num) num.textContent = q ? String(q.id).padStart(2, '0') : (speech.label ? '\u25b6' : '');
+  if (title) title.textContent = speech.label || (q ? q.title : '');
   if (play) {
     play.innerHTML = icon(speech.paused || !speech.playing ? 'play' : 'pause', 16);
     play.setAttribute('aria-label', speech.paused ? 'Resume' : 'Pause');
@@ -1340,7 +1424,7 @@ function renderCueCard(text, q) {
 }
 
 /* ---------- Render ---------- */
-function render() { renderBanner(); renderCount(); renderList(); }
+function render() { renderBanner(); renderCount(); renderChipCounts(); renderList(); renderBriefs(); }
 
 function renderBanner() {
   const b = document.getElementById('banner');
@@ -1354,6 +1438,17 @@ function renderBanner() {
   } else {
     b.innerHTML = '';
   }
+}
+
+/* How many questions sit behind each filter, without clicking it. */
+function renderChipCounts() {
+  document.querySelectorAll('.chip').forEach(function (c) {
+    const t = c.dataset.topic;
+    const n = t === 'all' ? questions.length : questions.filter(function (q) { return q.topic === t; }).length;
+    var el = c.querySelector('.chip-n');
+    if (!el) { el = document.createElement('span'); el.className = 'chip-n'; c.appendChild(el); }
+    el.textContent = n;
+  });
 }
 
 function renderCount() {
@@ -1374,7 +1469,9 @@ function renderList() {
     const exp = expandedIds.has(q.id);
     const num = String(q.id).padStart(2, '0');
     const meta = '<div class="q-meta"><span class="q-topic ' + esc(q.topic) + '">' + esc(topicLabel(q.topic)) + '</span>' +
-      (q.edited ? '<span class="q-edited">edited</span>' : '') + '</div>';
+      (q.edited ? '<span class="q-edited">edited</span>' : '') +
+      '<span class="q-len">' + speakMins(q.answer) + ' spoken \u00b7 ' + cueLines(q.answer).secs + 's short</span>' +
+      '</div>';
     const title = '<div class="q-title">' + highlightText(q.title, searchQuery) + '</div>';
 
     if (editingId === q.id) {
