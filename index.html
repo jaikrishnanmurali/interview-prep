@@ -353,39 +353,58 @@
   .player {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: 250;
     background: var(--card); border-top: 1px solid var(--border);
-    box-shadow: 0 -4px 24px var(--shadow);
+    box-shadow: 0 -8px 32px var(--shadow);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
   .player[hidden] { display: none !important; }
   .player-inner {
-    max-width: var(--w, 1240px); margin: 0 auto; padding: 11px 24px 13px;
-    display: flex; align-items: center; flex-wrap: wrap;
-    column-gap: 16px; row-gap: 9px;   /* the wrapped seek row needs its own rhythm */
+    max-width: var(--w, 1240px); margin: 0 auto; padding: 12px 24px 14px;
+    display: grid; align-items: center;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "now transport settings close"
+      "seek seek seek seek";
+    column-gap: 18px; row-gap: 8px;
   }
-  .player-now { flex: 1 1 200px; min-width: 0; display: flex; align-items: baseline; gap: 8px; }
+  .player-now {
+    grid-area: now; min-width: 0; display: flex; align-items: center; gap: 9px;
+  }
   .player-num {
-    font-family: 'Fraunces', Georgia, serif; font-size: 0.8rem; color: var(--accent);
-    font-weight: 600; font-variant-numeric: tabular-nums; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 28px; height: 28px; padding: 0 7px; border-radius: 9px;
+    background: var(--accent-light); color: var(--accent);
+    font-family: 'Fraunces', Georgia, serif; font-size: 0.76rem;
+    font-weight: 700; font-variant-numeric: tabular-nums; flex-shrink: 0;
   }
   .player-title {
-    font-size: 0.82rem; color: var(--fg2); white-space: nowrap;
+    font-size: 0.84rem; color: var(--fg); font-weight: 600; white-space: nowrap;
     overflow: hidden; text-overflow: ellipsis;
   }
-  .player-controls { display: flex; align-items: center; gap: 6px; }
-  .player-settings { display: flex; align-items: center; gap: 10px; }
+  .player-controls {
+    grid-area: transport; display: flex; align-items: center; justify-content: center; gap: 9px;
+  }
+  .player-settings {
+    grid-area: settings; justify-self: end; display: flex; align-items: center; gap: 10px;
+  }
   .pbtn {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 34px; height: 34px; border-radius: 8px; cursor: pointer;
+    width: 42px; height: 42px; border-radius: 50%; cursor: pointer;
     border: 1px solid var(--border); background: var(--bg); color: var(--fg2);
-    font-family: inherit; transition: border-color 0.2s, color 0.2s, background 0.2s;
+    font-family: inherit; touch-action: manipulation;
+    transition: transform 0.15s, border-color 0.2s, color 0.2s, background 0.2s;
   }
   .pbtn:hover { border-color: var(--accent); color: var(--accent); }
+  .pbtn:active { transform: scale(0.94); }
   .pbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .pbtn.primary { background: var(--accent); border-color: var(--accent); color: #fff; width: 40px; height: 40px; }
+  .pbtn.primary {
+    background: var(--accent); border-color: var(--accent); color: #fff;
+    width: 48px; height: 48px; box-shadow: 0 5px 14px rgba(180,83,9,0.22);
+  }
   .pbtn.primary:hover { background: var(--accent-hover); color: #fff; }
-  .player-inner { flex-wrap: wrap; }
+  .pbtn.skip { width: 44px; height: 44px; }
+  #p-close { grid-area: close; width: 40px; height: 40px; }
   .player-seek {
-    flex: 1 1 100%; order: 3; display: flex; align-items: center; gap: 12px;
+    grid-area: seek; width: 100%; display: flex; align-items: center; gap: 12px;
   }
   .player-seek[hidden] { display: none !important; }
   .ptime {
@@ -394,31 +413,49 @@
   }
   .ptime:last-child { text-align: right; }
   #p-seek {
-    flex: 1; height: 4px; cursor: pointer; accent-color: var(--accent);
-    background: var(--border); border-radius: 3px; appearance: none; -webkit-appearance: none;
+    --seek-progress: 0%;
+    flex: 1; height: 24px; cursor: pointer; accent-color: var(--accent);
+    background: transparent; appearance: none; -webkit-appearance: none;
+  }
+  #p-seek::-webkit-slider-runnable-track {
+    height: 5px; border-radius: 3px;
+    background: linear-gradient(to right, var(--accent) 0 var(--seek-progress), var(--border) var(--seek-progress) 100%);
   }
   #p-seek::-webkit-slider-thumb {
-    appearance: none; -webkit-appearance: none; width: 13px; height: 13px;
-    border-radius: 50%; background: var(--accent); cursor: pointer; border: 0;
+    appearance: none; -webkit-appearance: none; width: 17px; height: 17px;
+    margin-top: -6px; border-radius: 50%; background: var(--accent); cursor: pointer;
+    border: 3px solid var(--card); box-shadow: 0 1px 5px rgba(0,0,0,0.2);
+  }
+  #p-seek::-moz-range-track {
+    height: 5px; border-radius: 3px; background: var(--border);
+  }
+  #p-seek::-moz-range-progress {
+    height: 5px; border-radius: 3px; background: var(--accent);
   }
   #p-seek::-moz-range-thumb {
     width: 13px; height: 13px; border-radius: 50%; background: var(--accent);
-    cursor: pointer; border: 0;
+    cursor: pointer; border: 3px solid var(--card); box-shadow: 0 1px 5px rgba(0,0,0,0.2);
   }
   #p-seek:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
   #p-seek:disabled { cursor: default; opacity: 0.55; }
   #p-seek:disabled::-webkit-slider-thumb { background: var(--fg2); }
-  .player-rate { display: flex; align-items: center; gap: 7px; font-size: 0.75rem; color: var(--fg2); }
-  .player-rate span { font-variant-numeric: tabular-nums; min-width: 32px; }
-  .player-rate input { width: 78px; accent-color: var(--accent); cursor: pointer; }
+  .player-rate {
+    display: flex; align-items: center; gap: 7px; min-height: 42px;
+    font-size: 0.75rem; color: var(--fg2);
+  }
+  .setting-name { font-weight: 600; }
+  .player-rate #rate-label {
+    min-width: 32px; color: var(--fg); font-weight: 600; font-variant-numeric: tabular-nums;
+  }
+  .player-rate input { width: 78px; height: 28px; accent-color: var(--accent); cursor: pointer; }
   .player select {
-    max-width: 170px; padding: 6px 8px; border-radius: 7px; cursor: pointer;
+    max-width: 170px; min-height: 42px; padding: 7px 9px; border-radius: 10px; cursor: pointer;
     border: 1px solid var(--border); background: var(--bg); color: var(--fg);
     font-family: inherit; font-size: 0.76rem; outline: none;
   }
   .player select:focus { border-color: var(--accent); }
-  body.has-player .question-list { padding-bottom: 130px; }
-  body.has-player .toast-container { bottom: 90px; }
+  body.has-player .question-list { padding-bottom: 145px; }
+  body.has-player .toast-container { bottom: 118px; }
 
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -443,12 +480,34 @@
     .quiz-question { font-size: 1.25rem; }
     .banner { padding: 0 16px; }
     .search-wrap .shortcut { display: none; }
-    .player-inner { padding: 8px 14px; gap: 10px; }
-    .player-now { flex: 1 1 100%; order: -1; }
-    .player select { max-width: 116px; }
-    .player-rate input { width: 58px; }
-    body.has-player .question-list { padding-bottom: 165px; }
-    body.has-player .toast-container { bottom: 132px; }
+    .player-inner {
+      padding: 12px 16px 14px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "now close"
+        "seek seek"
+        "transport transport"
+        "settings settings";
+      column-gap: 10px; row-gap: 8px;
+    }
+    .player-now { min-height: 40px; }
+    .player-num { min-width: 30px; height: 30px; }
+    .player-title { font-size: 0.86rem; }
+    .player-seek { gap: 8px; }
+    .ptime { min-width: 38px; font-size: 0.7rem; }
+    .player-controls { gap: 18px; padding: 1px 0 2px; }
+    .pbtn.skip { width: 50px; height: 50px; }
+    .pbtn.primary { width: 58px; height: 58px; }
+    #p-close { width: 42px; height: 42px; }
+    .player-settings {
+      width: 100%; justify-self: stretch; justify-content: center;
+      padding-top: 6px; border-top: 1px solid var(--border);
+    }
+    .player-rate { flex: 1 1 auto; max-width: 230px; }
+    .player-rate input { flex: 1; min-width: 64px; width: auto; }
+    .player select { flex: 1 1 140px; min-width: 0; max-width: 180px; }
+    body.has-player .question-list { padding-bottom: 250px; }
+    body.has-player .toast-container { bottom: 222px; }
     .toast-container { left: 16px; right: 16px; bottom: 16px; }
     .toast { max-width: none; }
   }
@@ -560,21 +619,21 @@
 
 <div class="player" id="player" hidden>
   <div class="player-inner">
-    <div class="player-now">
+    <div class="player-now" role="status" aria-live="polite">
       <span class="player-num" id="player-num"></span>
       <span class="player-title" id="player-title"></span>
     </div>
-    <div class="player-controls">
-      <button class="pbtn" id="p-prev" aria-label="Previous"></button>
+    <button class="pbtn" id="p-close" aria-label="Close player"></button>
+    <div class="player-controls" role="group" aria-label="Playback controls">
+      <button class="pbtn skip" id="p-prev" aria-label="Go back 10 seconds"></button>
       <button class="pbtn primary" id="p-play" aria-label="Pause"></button>
-      <button class="pbtn" id="p-next" aria-label="Next"></button>
+      <button class="pbtn skip" id="p-next" aria-label="Skip forward 10 seconds"></button>
     </div>
     <div class="player-settings">
-      <label class="player-rate"><span id="rate-label">1.0x</span>
+      <label class="player-rate"><span class="setting-name">Speed</span><span id="rate-label">1.0x</span>
         <input type="range" id="p-rate" min="0.75" max="1.5" step="0.05" value="1" aria-label="Speed">
       </label>
       <select id="p-voice" aria-label="Voice"></select>
-      <button class="pbtn" id="p-close" aria-label="Stop"></button>
     </div>
     <div class="player-seek" id="player-seek">
       <span class="ptime" id="p-cur">0:00</span>
@@ -610,6 +669,8 @@ const ICONS = {
   pause:       '<path d="M8 4v16M16 4v16"/>',
   prev:        '<path d="M19 5v14l-11-7zM5 4v16"/>',
   next:        '<path d="M5 5v14l11-7zM19 4v16"/>',
+  rewind10:    '<path d="M3 5v5h5"/><path d="M5.3 16.2A8 8 0 1 0 6 7L3 10"/><text x="12" y="15" text-anchor="middle" font-size="7" font-family="system-ui,sans-serif" font-weight="700" fill="currentColor" stroke="none">10</text>',
+  forward10:   '<path d="M21 5v5h-5"/><path d="M18.7 16.2A8 8 0 1 1 18 7l3 3"/><text x="12" y="15" text-anchor="middle" font-size="7" font-family="system-ui,sans-serif" font-weight="700" fill="currentColor" stroke="none">10</text>',
   headphones:  '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><path d="M4 14a2 2 0 0 1 2-2h1v7H6a2 2 0 0 1-2-2zM20 14a2 2 0 0 0-2-2h-1v7h1a2 2 0 0 0 2-2z"/>'
 };
 function icon(name, size) {
@@ -1277,12 +1338,14 @@ function syncSeek() {
     if (cur) cur.textContent = fmtTime(audioEl.currentTime);
     if (dur) dur.textContent = isFinite(d) ? fmtTime(d) : '0:00';
     if (!seeking && isFinite(d) && d > 0) bar.value = String(Math.round(audioEl.currentTime / d * 1000));
+    bar.style.setProperty('--seek-progress', (Number(bar.value) / 10) + '%');
     return;
   }
   /* Synthesised speech: show how far through the answer we are instead. */
   const n = speech.segs.length;
   bar.disabled = true;
   bar.value = String(n ? Math.round((speech.idx + 1) / n * 1000) : 0);
+  bar.style.setProperty('--seek-progress', (Number(bar.value) / 10) + '%');
   if (cur) cur.textContent = n ? 'line ' + (speech.idx + 1) : '';
   if (dur) dur.textContent = n ? 'of ' + n : '';
 }
@@ -1356,7 +1419,7 @@ function togglePlay() {
   }
 }
 
-const SKIP = 15;   /* seconds, the podcast convention */
+const SKIP = 10;   /* seconds; short enough to replay a missed phrase */
 function fmtTime(s) {
   if (!isFinite(s) || s < 0) s = 0;
   const m = Math.floor(s / 60), r = Math.floor(s % 60);
@@ -1370,6 +1433,8 @@ function jumpSentence(delta) {
     const d = audioEl.duration;
     audioEl.currentTime = Math.max(0, Math.min((isFinite(d) ? d : 1e9) - 0.3,
                                                audioEl.currentTime + delta * SKIP));
+    syncSeek();
+    updateMediaSession();
     return;
   }
   if (speech.mode === 'continuous') { playContinuousAt(contPos + delta); return; }
@@ -1491,12 +1556,28 @@ function updatePlayer() {
   const num = document.getElementById('player-num');
   const title = document.getElementById('player-title');
   const play = document.getElementById('p-play');
+  const prev = document.getElementById('p-prev');
+  const next = document.getElementById('p-next');
+  const voice = document.getElementById('p-voice');
+  const realAudio = usingAudio();
   if (num) num.textContent = q ? String(q.id).padStart(2, '0') : (speech.label ? '\u25b6' : '');
   if (title) title.textContent = speech.label || (q ? q.title : '');
   if (play) {
     play.innerHTML = icon(speech.paused || !speech.playing ? 'play' : 'pause', 16);
     play.setAttribute('aria-label', speech.paused ? 'Resume' : 'Pause');
   }
+  if (prev) {
+    prev.innerHTML = icon(realAudio ? 'rewind10' : 'prev', realAudio ? 24 : 20);
+    prev.setAttribute('aria-label', realAudio ? 'Go back 10 seconds' : 'Previous spoken line');
+    prev.title = realAudio ? 'Back 10 seconds' : 'Previous line';
+  }
+  if (next) {
+    next.innerHTML = icon(realAudio ? 'forward10' : 'next', realAudio ? 24 : 20);
+    next.setAttribute('aria-label', realAudio ? 'Skip forward 10 seconds' : 'Next spoken line');
+    next.title = realAudio ? 'Forward 10 seconds' : 'Next line';
+  }
+  /* A selected browser voice has no effect while a recorded file is playing. */
+  if (voice) voice.hidden = realAudio;
   updateMediaSession();
 }
 
@@ -1900,12 +1981,10 @@ document.addEventListener('keydown', e => {
 
 /* ---------- Speech wiring ---------- */
 document.getElementById('btn-listen').innerHTML = icon('headphones') + '<span class="btn-label">Listen</span>';
-document.getElementById('p-prev').innerHTML = icon('prev', 15);
-document.getElementById('p-prev').setAttribute('aria-label', 'Back 15 seconds');
-document.getElementById('p-prev').title = 'Back 15s';
-document.getElementById('p-next').innerHTML = icon('next', 15);
-document.getElementById('p-next').setAttribute('aria-label', 'Forward 15 seconds');
-document.getElementById('p-next').title = 'Forward 15s';
+document.getElementById('p-prev').innerHTML = icon('rewind10', 24);
+document.getElementById('p-prev').title = 'Back 10 seconds';
+document.getElementById('p-next').innerHTML = icon('forward10', 24);
+document.getElementById('p-next').title = 'Forward 10 seconds';
 document.getElementById('p-close').innerHTML = icon('x', 15);
 document.getElementById('p-play').innerHTML = icon('pause', 16);
 
@@ -1923,6 +2002,7 @@ function seekTo() {
 seekBar.addEventListener('pointerdown', function () { seeking = true; });
 seekBar.addEventListener('input', function () {
   seeking = true;
+  seekBar.style.setProperty('--seek-progress', (Number(seekBar.value) / 10) + '%');
   if (audioEl && isFinite(audioEl.duration)) {
     const c = document.getElementById('p-cur');
     if (c) c.textContent = fmtTime(Number(seekBar.value) / 1000 * audioEl.duration);
